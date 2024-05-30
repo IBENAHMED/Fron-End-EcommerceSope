@@ -1,0 +1,9 @@
+.cover {
+    height: 50%;
+    display: flex;
+    justify-content: right;
+}
+
+.image {
+    max-width: 68%;
+}
