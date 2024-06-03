@@ -21,10 +21,11 @@ const RelatedProducts = ({ idProducts }: any) => {
     }, [])
 
     return (
-        <div className='RelatedProducts pb-16'>
-            <h1 className='text-4xl py-5 text-center'>Telated Products</h1>
-            <hr />
-            <div className='RelatedProducts-item grid grid-cols-4  gap-5'>
+
+        <div className='px-5 container mx-auto text-left mt-20'>
+            <h1 className='text-1xl md:text-3xl pb-5 text-center text-pink-600'>Telated Products</h1>
+            <hr className='mb-5 border-pink-600' />
+            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5'>
                 {
                     data && data.map((item: any, i: any) => {
                         return <Item

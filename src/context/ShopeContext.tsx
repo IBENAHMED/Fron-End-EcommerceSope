@@ -1,23 +1,18 @@
 "use client"
+import Spinner from "@/components/Spinner/Spinner";
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
-// import all_product from "../Assets/all_product";
 export let ShopeProviderContext = createContext<any>(null);
-
-
-
 
 const ShopeContext = ({ children }: any) => {
 
-    // let token = localStorage.getItem("token");
-    // let token = localStorage.getItem("token");
     const [cookies, setCookie, removeCookie] = useCookies(['token']);
 
     const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
     let [cardItems, setCardItems]: any = useState({});
-    let [all_products, setAll_Products]: any = useState([]);
+    let [all_products, setAll_Products]: any = useState();
 
     useEffect(() => {
         let getDefaultCarts = async () => {
@@ -90,12 +85,17 @@ const ShopeContext = ({ children }: any) => {
     };
 
     let getTotalCartItemAdded = () => {
-        let total = 0;
-        all_products.map((e: any) => {
-            if (cardItems[e._id] > 0) {
-                total = total + cardItems[e._id];
-            }
-        });
+        let total: any = 0;
+        all_products
+            ?
+            all_products.map((e: any) => {
+                if (cardItems[e._id] > 0) {
+                    total = total + cardItems[e._id];
+                }
+            })
+            :
+            total = "..."
+
         return total;
     }
 

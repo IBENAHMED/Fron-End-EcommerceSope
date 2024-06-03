@@ -10,9 +10,10 @@ const CardItem = ({
 
     return (
         <div>
-            <div className="container mx-auto pt-8">
-                <div className='bg-white border border-gray-200'>
-                    <table className="cardItem min-w-full ">
+            <div className="bg-red-50 pt-7 px-8">
+                <div className="container mx-auto bg-white p-6 rounded-lg shadow-md" style={{ "height": "calc(100vh - 105px)", "overflow": "auto" }}>
+                    <h1 className="text-2xl font-bold mb-4">All Products List</h1>
+                    <table className="w-full text-left table-auto border-collapse">
                         <thead>
                             <tr className="w-full border-b border-gray-300">
                                 <th className="px-4 py-2 text-left">Products</th>
@@ -51,37 +52,35 @@ const CardItem = ({
                             }
                         </tbody>
                     </table>
-                    <div className='CardItem-down py-10 px-3 grid grid-cols-2 gap-10' >
-                        <div className='CardItem-left'>
-                            <h1 className='text-3xl py-3'>Crat Totals</h1>
-                            <div className='flex justify-between'>
-                                <p>Subtotal</p>
-                                <span>${gettotalPriceProducts()}</span>
-                            </div>
-                            <hr className='py-3' />
-                            <div className='flex justify-between'>
-                                <p>SubShopping Free</p>
-                                <span>Free</span>
-                            </div>
-                            <hr className='py-3' />
-                            <div className='flex justify-between'>
-                                <p className='font-bold'>Total</p>
-                                <span>${gettotalPriceProducts()}</span>
-                            </div>
-                            <hr className='py-3' />
-                            <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">ADD to CART</button>
+                </div>
+                <div className='CardItem-down py-10 px-3 grid grid-cols-1 md:grid-cols-2 gap-10'>
+                    <div className='CardItem-left bg-white shadow-lg rounded-lg p-6'>
+                        <h1 className='text-3xl py-3 font-bold text-gray-800'>Cart Totals</h1>
+                        <div className='flex justify-between py-2'>
+                            <p className='text-gray-600'>Subtotal</p>
+                            <span className='text-gray-800'>${gettotalPriceProducts()}</span>
                         </div>
-                        <div className='CardItem-right'>
-                            <p className='text-slate-500'>
-                                if you have a promo code enter it here
-                            </p>
-                            <form className="flex items-center bg-white shadow rounded-full overflow-hidden">
-                                <input type="text" placeholder="Your Email" className="flex-grow p-4 text-sm text-gray-700 outline-none" />
-                                <button type="submit" className="p-2 bg-gray-200 hover:bg-gray-300 focus:bg-gray-300 text-gray-600 rounded-full mx-2">
-                                    <span className='px-5 text-xs'>Subscribe</span>
-                                </button>
-                            </form>
+                        <hr className='py-2' />
+                        <div className='flex justify-between py-2'>
+                            <p className='text-gray-600'>Shipping Fee</p>
+                            <span className='text-gray-800'>Free</span>
                         </div>
+                        <hr className='py-2' />
+                        <div className='flex justify-between py-2'>
+                            <p className='font-bold text-gray-800'>Total</p>
+                            <span className='text-gray-800'>${gettotalPriceProducts()}</span>
+                        </div>
+                        <hr className='py-2' />
+                        <button className="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 mt-4">Add to Cart</button>
+                    </div>
+                    <div className='CardItem-right bg-white shadow-lg rounded-lg p-6'>
+                        <p className='text-slate-500 mb-4'>If you have a promo code, enter it here:</p>
+                        <form className="flex items-center bg-gray-100 rounded-full overflow-hidden">
+                            <input type="text" placeholder="Promo Code" className="flex-grow p-4 text-sm text-gray-700 outline-none bg-transparent" />
+                            <button type="submit" className="p-2 bg-gray-300 hover:bg-gray-400 focus:bg-gray-400 text-gray-600 rounded-full mx-2">
+                                <span className='px-5 text-xs'>Apply</span>
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>

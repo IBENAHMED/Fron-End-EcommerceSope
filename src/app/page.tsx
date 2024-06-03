@@ -4,6 +4,7 @@ import NewCollections from "@/components/NewCollections/NewCollections";
 import NewLetters from "@/components/NewLetters/NewLetters";
 import Offre from "@/components/Offre/Offre";
 import Popular from "@/components/Popular/Popular";
+import Spinner from "@/components/Spinner/Spinner";
 import React, { createContext, useState } from "react";
 
 export default function Home() {

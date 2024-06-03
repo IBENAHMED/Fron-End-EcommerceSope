@@ -3,6 +3,7 @@ import React, { useContext, useState } from 'react';
 import axios from "axios";
 import { useRouter } from 'next/navigation';
 import { ShopeProviderContext } from '@/context/ShopeContext';
+import Swal from 'sweetalert2';
 
 const SignUp = () => {
 
@@ -26,7 +27,7 @@ const SignUp = () => {
             console.log(data)
             if (data.data.token) {
                 setCookie("token", data.data.token);
-                router.push("/")
+                window.location.replace("/")
             } else {
                 alert(data.data.err)
             };
@@ -37,18 +38,47 @@ const SignUp = () => {
 
     let SignUpUser = async (e: any) => {
         e.preventDefault();
+
+        let emailRegular = /^\S+@\S+\.com/ig;
+        const passwordRegular = /^([a-z])([A-Z])(\d)([$&+,:;=?@#|'<>.^*()%!-])/ig;
+
         try {
-            let data = await axios.post(`${BASE_URL}/signup`, formData)
-            if (data.data.token) {
-                setCookie("token", data.data.token);
-                router.push("/")
+            if (emailRegular.test(formData.email) && passwordRegular.test(formData.password)) {
+
+                let data = await axios.post(`${BASE_URL}/signup`, formData)
+                if (data.data.token) {
+
+                    setCookie("token", data.data.token);
+                    window.location.replace("/")
+
+                } else {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "error",
+                        title: "token not disponible",
+                        showConfirmButton: false,
+                        timer: 1000
+                    });
+                };
             } else {
-                alert(data.data.err)
-            };
+                Swal.fire({
+                    position: "top-end",
+                    icon: "error",
+                    title: "email and password aren't strong",
+                    showConfirmButton: false,
+                    timer: 1000
+                });
+            }
         } catch (err) {
-            alert("try again the user not added")
+            Swal.fire({
+                position: "top-end",
+                icon: "error",
+                title: "try again the user not added",
+                showConfirmButton: false,
+                timer: 1000
+            });
         };
-    }
+    };
 
     return (
         <div className="flex items-center justify-center min-h-screen bg-gray-100">

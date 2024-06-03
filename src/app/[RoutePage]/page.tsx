@@ -1,17 +1,18 @@
 "use client"
 
-import React, { useContext, useEffect } from 'react'
+import React, { Suspense, useContext, useEffect } from 'react'
 import banner_mens from '../../Assets/banner_mens.png'
 import banner_kids from '../../Assets/banner_kids.png'
 import banner_women from '../../Assets/banner_women.png'
 import { ShopeProviderContext } from '@/context/ShopeContext';
 import Item from '@/components/Item/Item';
 import withAuth from '@/util/PrivateRouter'
+import Spinner from '@/components/Spinner/Spinner'
 
 const page = (props: any) => {
 
     let title, img;
-    let { all_products } = useContext(ShopeProviderContext);
+    let { all_products }: any = useContext(ShopeProviderContext);
 
     switch (props.params.RoutePage) {
         case "men":
@@ -44,21 +45,29 @@ const page = (props: any) => {
                         </button>
                     </div>
                 </div>
-                <div className='grid grid-cols-4  gap-5'>
-                    {all_products.map((item: any, i: any) => {
-                        if (props.params.RoutePage == item.category) {
-                            return <Item
-                                key={i}
-                                id={item._id}
-                                name={item.name}
-                                image={item.img}
-                                new_price={item.new_price}
-                                old_price={item.old_price}
-                            />
-                        } else {
-                            return null
-                        }
-                    })}
+                <div className='grid grid-cols-4 mb-5 gap-5'>
+                    {
+                        all_products
+                            ?
+                            all_products.map((item: any, i: any) => {
+                                if (props.params.RoutePage == item.category) {
+                                    return <Item
+                                        key={i}
+                                        id={item._id}
+                                        name={item.name}
+                                        image={item.img}
+                                        new_price={item.new_price}
+                                        old_price={item.old_price}
+                                    />
+                                } else {
+                                    return null
+                                }
+                            })
+                            :
+                            <div className='col-span-12'>
+                                <Spinner />
+                            </div>
+                    }
                 </div>
             </div>
 

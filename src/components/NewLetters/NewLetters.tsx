@@ -6,7 +6,7 @@ const NewLetters = () => {
             <div className='px-5 container mx-auto mt-40' >
                 <div className='relative p-16 rounded bg-gradient-to-b from-pink-300 to-white'>
                     <div className='NewLetters text-center'>
-                        <h1 className='text-4xl'>Get Exclusive Offers On Your Email</h1>
+                        <h1 className='text-2xl md:text-4xl'>Get Exclusive Offers On Your Email</h1>
                         <p className='py-10'>Subscribe to our newsletter and stay update</p>
                         <div className='flex items-center justify-center'>
                             <div className="w-full max-w-md">

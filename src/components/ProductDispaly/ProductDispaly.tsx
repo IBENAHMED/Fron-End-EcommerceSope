@@ -12,11 +12,11 @@ const ProductDispaly = ({ product, idProducts }: any) => {
         <div className="py-6">
             <div className="flex flex-wrap">
                 <div className="w-full md:w-1/3 flex flex-col items-center">
-                    <div className="flex space-x-2 mb-4">
-                        <img className="w-16 h-16" src={`${product && product.img}`} alt="product.image" />
-                        <img className="w-16 h-16" src={`${product && product.img}`} alt="product.image" />
-                        <img className="w-16 h-16" src={`${product && product.img}`} alt="product.image" />
-                        <img className="w-16 h-16" src={`${product && product.img}`} alt="product.image" />
+                    <div className="flex flex-wrap space-x-2 mb-4">
+                        <img className="my-2 w-16 h-16" src={`${product && product.img}`} alt="product.image" />
+                        <img className="my-2 w-16 h-16" src={`${product && product.img}`} alt="product.image" />
+                        <img className="my-2 w-16 h-16" src={`${product && product.img}`} alt="product.image" />
+                        <img className="my-2 w-16 h-16" src={`${product && product.img}`} alt="product.image" />
                     </div>
                     <div className="w-full mb-4">
                         <img className="w-full h-auto" src={`${product && product.img}`} alt="product.image" />
