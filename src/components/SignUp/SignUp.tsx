@@ -1,7 +1,8 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import axios from "axios";
 import { useRouter } from 'next/navigation';
+import { ShopeProviderContext } from '@/context/ShopeContext';
 
 const SignUp = () => {
 
@@ -14,13 +15,17 @@ const SignUp = () => {
         password: "",
     });
 
+    let { cookies, setCookie, removeCookie } = useContext(ShopeProviderContext)
+
+    const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+
     let login = async (e: any) => {
         e.preventDefault();
         try {
-            let data = await axios.post("http://localhost:4000/login", formData)
+            let data = await axios.post(`${BASE_URL}/login`, formData)
             console.log(data)
             if (data.data.token) {
-                localStorage.setItem("token", data.data.token);
+                setCookie("token", data.data.token);
                 router.push("/")
             } else {
                 alert(data.data.err)
@@ -28,13 +33,14 @@ const SignUp = () => {
         } catch (err) {
             alert("try again the user not added")
         };
-    }
+    };
+
     let SignUpUser = async (e: any) => {
         e.preventDefault();
         try {
-            let data = await axios.post("http://localhost:4000/signup", formData)
+            let data = await axios.post(`${BASE_URL}/signup`, formData)
             if (data.data.token) {
-                localStorage.setItem("token", data.data.token);
+                setCookie("token", data.data.token);
                 router.push("/")
             } else {
                 alert(data.data.err)

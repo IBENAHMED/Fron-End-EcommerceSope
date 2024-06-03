@@ -4,7 +4,7 @@ import exclusive_img from '../../Assets/exclusive_image.png'
 const Offre = () => {
     return (
         <div>
-            <div className='container mx-auto mt-40'>
+            <div className=' px-5 container mx-auto mt-40'>
                 <div className='relative px-16 flex justify-between items-center rounded bg-gradient-to-b from-pink-300 to-white'>
                     <div className='offre-left'>
                         <h1 className='text-6xl'>Exclusive</h1>

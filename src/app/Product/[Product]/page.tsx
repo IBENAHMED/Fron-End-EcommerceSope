@@ -5,6 +5,7 @@ import DiscriptionBox from '@/components/DiscriptionBox/DiscriptionBox';
 import ProductDispaly from '@/components/ProductDispaly/ProductDispaly';
 import RelatedProducts from '@/components/RelatedProducts/RelatedProducts';
 import { ShopeProviderContext } from '@/context/ShopeContext'
+import withAuth from '@/util/PrivateRouter';
 import React, { useContext, useEffect, useState } from 'react'
 
 const page = (props: any) => {
@@ -14,12 +15,14 @@ const page = (props: any) => {
 
     return (
         <div className='container mx-auto'>
-            <Breadcrums product={product && product} />
-            <ProductDispaly product={product && product} idProducts={props.params.Product} />
-            <DiscriptionBox />
-            <RelatedProducts />
+            <div className='px-5'>
+                <Breadcrums product={product && product} />
+                <ProductDispaly product={product && product} idProducts={props.params.Product} />
+                <DiscriptionBox />
+                <RelatedProducts idProducts={props.params.Product} />
+            </div>
         </div>
     )
 }
 
-export default page
+export default withAuth(page)

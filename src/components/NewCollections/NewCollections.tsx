@@ -8,9 +8,11 @@ import axios from 'axios';
 const NewCollections = () => {
     let [newCollection, setNewCollection]: any = useState([])
 
+    const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+
     useEffect(() => {
         let getNewCollection = async () => {
-            let data = await axios.get("http://localhost:4000/newcollection");
+            let data = await axios.get(`${BASE_URL}/newcollection`);
             setNewCollection(data.data.newCollection)
         };
 
@@ -19,7 +21,7 @@ const NewCollections = () => {
 
     return (
         <div>
-            <div className='container mx-auto text-left mt-40'>
+            <div className='px-5 container mx-auto text-left mt-40'>
                 <h1 className='text-3xl pb-5 text-center'>NEW COLLECTIONS</h1>
                 <hr />
                 <div className='grid grid-cols-4 gap-5'>

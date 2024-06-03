@@ -12,7 +12,7 @@ const Hero = () => {
 
     return (
         <div className='flex items-center bg-gradient-to-b from-pink-300 to-white' style={{ "height": "calc(100vh - 65px)" }}>
-            <div className="container mx-auto flex flex-wrap items-center justify-between">
+            <div className=" px-5container mx-auto flex flex-wrap items-center justify-between">
                 <div className="max-w-lg">
                     <p className="text-sm font-semibold text-gray-600 uppercase">New arrivals only</p>
                     <h1 className="mt-4 text-5xl font-bold text-gray-900">

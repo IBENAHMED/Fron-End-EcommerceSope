@@ -1,38 +1,32 @@
 "use client"
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
 // import all_product from "../Assets/all_product";
-
 export let ShopeProviderContext = createContext<any>(null);
 
-// get all product
 
-// let all_products = all_product;
-
-// let AllDefaultCarts: any = {}
-// function getDefaultCarts() {
-//     for (let i = 0; i < 300; i++) {
-//         AllDefaultCarts[i] = 0;
-//     };
-//     return AllDefaultCarts;
-// };
-
-let token = localStorage.getItem("token");
 
 
 const ShopeContext = ({ children }: any) => {
+
+    // let token = localStorage.getItem("token");
+    // let token = localStorage.getItem("token");
+    const [cookies, setCookie, removeCookie] = useCookies(['token']);
+
+    const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
     let [cardItems, setCardItems]: any = useState({});
     let [all_products, setAll_Products]: any = useState([]);
 
     useEffect(() => {
         let getDefaultCarts = async () => {
-            if (token) {
+            if (cookies.token) {
                 try {
-                    const response = await axios.post("http://localhost:4000/UserListCartDate", {}, {
+                    const response = await axios.post(`${BASE_URL}/UserListCartDate`, {}, {
                         headers: {
                             'Content-Type': 'application/json',
-                            'token-auth': token,
+                            'token-auth': cookies.token,
                         }
                     });
                     setCardItems(response.data.cartData);
@@ -44,7 +38,7 @@ const ShopeContext = ({ children }: any) => {
         getDefaultCarts();
 
         let fetchData = async () => {
-            let data = await axios.get("http://localhost:4000/getallproducts");
+            let data = await axios.get(`${BASE_URL}/getallproducts`);
             setAll_Products(data.data.allPrudcts);
         };
 
@@ -54,12 +48,12 @@ const ShopeContext = ({ children }: any) => {
     // function addFunction(prev: any, item: number) {return ({...prev, [item]: prev[item] + 1})}
 
     let AddCardItems = async (id: any) => {
-        if (token) {
-            let data = await fetch("http://localhost:4000/userAddPoduct", {
+        if (cookies.token) {
+            let data = await fetch(`${BASE_URL}/userAddPoduct`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'token-auth': token,
+                    'token-auth': cookies.token,
                 },
                 body: JSON.stringify({
                     id
@@ -70,12 +64,12 @@ const ShopeContext = ({ children }: any) => {
     };
 
     let RemoveCardItems = async (id: any) => {
-        if (token) {
-            let data = await fetch("http://localhost:4000/userRemovePoduct", {
+        if (cookies.token) {
+            let data = await fetch(`${BASE_URL}/userRemovePoduct`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'token-auth': token,
+                    'token-auth': cookies.token,
                 },
                 body: JSON.stringify({
                     id
@@ -106,6 +100,7 @@ const ShopeContext = ({ children }: any) => {
     }
 
     let contextValue = {
+        cookies, setCookie, removeCookie,
         all_products,
         cardItems,
         AddCardItems,

@@ -3,6 +3,7 @@
 import { useContext } from "react"
 import CardItem from "@/components/CardItem/CardItem"
 import { ShopeProviderContext } from "@/context/ShopeContext"
+import withAuth from "@/util/PrivateRouter"
 
 const page = () => {
 
@@ -25,4 +26,4 @@ const page = () => {
     )
 }
 
-export default page
+export default withAuth(page)

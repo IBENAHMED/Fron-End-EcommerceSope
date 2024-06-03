@@ -3,7 +3,7 @@ import './NewLetters.css'
 const NewLetters = () => {
     return (
         <div>
-            <div className='container mx-auto mt-40' >
+            <div className='px-5 container mx-auto mt-40' >
                 <div className='relative p-16 rounded bg-gradient-to-b from-pink-300 to-white'>
                     <div className='NewLetters text-center'>
                         <h1 className='text-4xl'>Get Exclusive Offers On Your Email</h1>

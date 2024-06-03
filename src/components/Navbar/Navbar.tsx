@@ -8,13 +8,13 @@ import { useRouter } from 'next/navigation';
 
 const Navbar = () => {
 
-    let { getTotalCartItemAdded } = useContext(ShopeProviderContext)
-    let router = useRouter()
+    let { getTotalCartItemAdded, cookies, removeCookie } = useContext(ShopeProviderContext)
+    let router = useRouter();
 
     return (
         <div className='bg-white'>
-            <div className='container mx-auto navbar flex flex-wrap justify-between items-center'>
-                <div className='nav-logo flex items-center gap-5'>
+            <div className='container px-5 mx-auto navbar flex flex-wrap justify-between items-center'>
+                <div className='nav-logo flex items-center gap-5 '>
                     <img src={logo.src} alt='image logo' />
                     <p className='text-2xl'>SHOPPER</p>
                 </div>
@@ -44,9 +44,9 @@ const Navbar = () => {
                 </div>
                 <div className='nav-login-cart flex gap-5 relative'>
                     {
-                        localStorage.getItem("token")
+                        cookies.token
                             ? <button
-                                onClick={() => { localStorage.removeItem("token"); router.push("/SignUp") }}
+                                onClick={() => { removeCookie("token"); window.location.replace("/SignUp") }}
                                 className="cursor-pointer transition duration-300 ease-in-out bg-white text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded-full hover:bg-gray-200">
                                 Logout
                             </button>

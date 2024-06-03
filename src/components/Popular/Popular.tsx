@@ -10,9 +10,11 @@ const Popular = () => {
 
     let [popularWomen, setPopularWomen] = useState([]);
 
+    const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+
     useEffect(() => {
         let getPopularWomen = async () => {
-            let data = await axios.get("http://localhost:4000/popularWomen");
+            let data = await axios.get(`${BASE_URL}/popularWomen`);
             setPopularWomen(data.data.newPopularWomen);
         }
         getPopularWomen();
@@ -20,7 +22,7 @@ const Popular = () => {
 
     return (
         <div>
-            <div className='container mx-auto text-left mt-40'>
+            <div className='px-5 container mx-auto text-left mt-40'>
                 <h1 className='text-3xl pb-5 text-center'>POPULAR IN WOMEN</h1>
                 <hr />
                 <div className='flex gap-5'>

@@ -16,7 +16,7 @@ const Item: React.FC<ItemProps> = ({ id, name, image, new_price, old_price }) =>
     return (
         <div className=''>
             <Link href={`/Product/${id}`}>
-                <img src={image} alt={name} />
+                <img src={`${image}`} alt={name} />
             </Link>
             <div className='mt-3'>
                 <h3>{name}</h3>

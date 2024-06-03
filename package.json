@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "env-cmd -f dev.env next dev",
+    "dev": "env-cmd -f .env.local next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -14,6 +14,7 @@
     "env-cmd": "^10.1.0",
     "next": "14.2.3",
     "react": "^18",
+    "react-cookie": "^7.1.4",
     "react-dom": "^18"
   },
   "devDependencies": {
