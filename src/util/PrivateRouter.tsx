@@ -6,18 +6,16 @@ const withAuth = (Component: any) => {
     const Auth = (props: any) => {
         const { cookies } = useContext(ShopeProviderContext);
 
-        if (!cookies.token) {
+        if (cookies && cookies.token) {
             return (
-                <SignUp />
+                <Component {...props} />
             );
         }
 
         return (
-            <Component {...props} />
+            <SignUp />
         );
     };
-
-
     return Auth;
 };
 

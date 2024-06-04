@@ -24,7 +24,6 @@ const SignUp = () => {
         e.preventDefault();
         try {
             let data = await axios.post(`${BASE_URL}/login`, formData)
-            console.log(data)
             if (data.data.token) {
                 setCookie("token", data.data.token);
                 window.location.replace("/")
@@ -40,7 +39,7 @@ const SignUp = () => {
         e.preventDefault();
 
         let emailRegular = /^\S+@\S+\.com/ig;
-        const passwordRegular = /^([a-z])([A-Z])(\d)([$&+,:;=?@#|'<>.^*()%!-])/ig;
+        const passwordRegular = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).{8,}$/ig;
 
         try {
             if (emailRegular.test(formData.email) && passwordRegular.test(formData.password)) {

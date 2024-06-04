@@ -1,4 +1,3 @@
-
 import Hero from "@/components/Hero/Hero";
 import NewCollections from "@/components/NewCollections/NewCollections";
 import NewLetters from "@/components/NewLetters/NewLetters";

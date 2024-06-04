@@ -1,4 +1,3 @@
-"use client"
 import './NewCollections.css';
 import new_collections from '../../Assets/new_collections'
 import Item from '../Item/Item';
@@ -6,19 +5,11 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Spinner from '../Spinner/Spinner';
 
-const NewCollections = () => {
-    let [newCollection, setNewCollection]: any = useState()
-
+const NewCollections = async () => {
     const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
-    useEffect(() => {
-        let getNewCollection = async () => {
-            let data = await axios.get(`${BASE_URL}/newcollection`);
-            setNewCollection(data.data.newCollection)
-        };
-
-        getNewCollection();
-    });
+    let data = await axios.get(`${BASE_URL}/newcollection`);
+    let newCollection = await data.data.newCollection
 
     return (
         <div className='px-5 container mx-auto text-left mt-20'>

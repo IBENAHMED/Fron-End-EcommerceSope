@@ -26,18 +26,26 @@ const Navbar = () => {
                 </Link>
                 <div className={`md:flex md:items-center ${isMenuOpen ? 'block' : 'hidden'}`}>
                     <ul className='md:flex md:justify-around'>
-                        <li className='cursor-pointer px-5 py-3 rounded font-medium hover:bg-slate-200 transition duration-300'>
-                            <Link href="/">Shope</Link>
-                        </li>
-                        <li className='cursor-pointer px-5 py-3 rounded font-medium hover:bg-slate-200 transition duration-300'>
-                            <Link href="/men">Men</Link>
-                        </li>
-                        <li className='cursor-pointer px-5 py-3 rounded font-medium hover:bg-slate-200 transition duration-300'>
-                            <Link href="women">Women</Link>
-                        </li>
-                        <li className='cursor-pointer px-5 py-3 rounded font-medium hover:bg-slate-200 transition duration-300'>
-                            <Link href="kid">Kids</Link>
-                        </li>
+                        <Link href="/">
+                            <li className='cursor-pointer px-5 py-3 rounded font-medium hover:bg-slate-200 transition duration-300'>
+                                Shope
+                            </li>
+                        </Link>
+                        <Link href="/men">
+                            <li className='cursor-pointer px-5 py-3 rounded font-medium hover:bg-slate-200 transition duration-300'>
+                                Men
+                            </li>
+                        </Link>
+                        <Link href="women">
+                            <li className='cursor-pointer px-5 py-3 rounded font-medium hover:bg-slate-200 transition duration-300'>
+                                Women
+                            </li>
+                        </Link>
+                        <Link href="kid">
+                            <li className='cursor-pointer px-5 py-3 rounded font-medium hover:bg-slate-200 transition duration-300'>
+                                Kids
+                            </li>
+                        </Link>
                     </ul>
                 </div>
                 <div className='flex items-center gap-5'>

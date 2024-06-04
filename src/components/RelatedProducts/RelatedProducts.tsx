@@ -15,7 +15,6 @@ const RelatedProducts = ({ idProducts }: any) => {
         let getrelatiedproducts = async () => {
             let data = await axios.post(`${BASE_URL}/getrelatiedproducts`, { _id: idProducts });
             setData(data.data.fourProducts);
-            console.log(data)
         }
         getrelatiedproducts();
     }, [])

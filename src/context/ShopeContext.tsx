@@ -11,35 +11,42 @@ const ShopeContext = ({ children }: any) => {
 
     const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
-    let [cardItems, setCardItems]: any = useState({});
     let [all_products, setAll_Products]: any = useState();
+    let [cardItems, setCardItems]: any = useState({});
 
-    useEffect(() => {
-        let getDefaultCarts = async () => {
-            if (cookies.token) {
-                try {
-                    const response = await axios.post(`${BASE_URL}/UserListCartDate`, {}, {
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'token-auth': cookies.token,
-                        }
-                    });
-                    setCardItems(response.data.cartData);
-                } catch (error) {
-                    console.error('Error fetching cart data:', error);
-                }
+    let getDefaultCarts = async () => {
+        if (cookies.token) {
+            try {
+                const response = await axios.post(`${BASE_URL}/UserListCartDate`, {}, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'token-auth': cookies.token,
+                    }
+                });
+                setCardItems(response.data.cartData);
+
+            } catch (error) {
+                console.error('Error fetching cart data:', error);
             }
         }
+    }
+
+    useEffect(() => {
         getDefaultCarts();
+    }, []);
 
+    useEffect(() => {
         let fetchData = async () => {
-            let data = await axios.get(`${BASE_URL}/getallproducts`);
-            setAll_Products(data.data.allPrudcts);
+            try {
+                let res = await axios.get(`${BASE_URL}/getallproducts`);
+                setAll_Products(res.data.allPrudcts);
+            } catch (err) {
+                console.log("err" + err)
+            }
         };
-
         fetchData();
+    }, [cookies.token])
 
-    }, [cardItems]);
     // function addFunction(prev: any, item: number) {return ({...prev, [item]: prev[item] + 1})}
 
     let AddCardItems = async (id: any) => {
@@ -54,6 +61,7 @@ const ShopeContext = ({ children }: any) => {
                     id
                 }),
             })
+            getDefaultCarts();
             return data.json();
         }
     };
@@ -70,11 +78,12 @@ const ShopeContext = ({ children }: any) => {
                     id
                 }),
             })
-            data.json();
+            getDefaultCarts();
         }
     };
 
     let gettotalPriceProducts = () => {
+
         let totle: number = 0;
         all_products.map((item: any) => {
             if (cardItems[item._id] > 0) {
@@ -85,6 +94,7 @@ const ShopeContext = ({ children }: any) => {
     };
 
     let getTotalCartItemAdded = () => {
+
         let total: any = 0;
         all_products
             ?

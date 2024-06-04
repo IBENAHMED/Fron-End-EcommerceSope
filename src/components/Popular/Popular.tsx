@@ -1,4 +1,4 @@
-"use client"
+// "use client"
 import './Popular.css';
 import data_products from '../../Assets/data';
 import Item from '../Item/Item';
@@ -7,19 +7,13 @@ import axios from 'axios';
 import Spinner from '../Spinner/Spinner';
 
 
-const Popular = () => {
+const Popular = async () => {
 
-    let [popularWomen, setPopularWomen]: any = useState();
 
     const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
-    useEffect(() => {
-        let getPopularWomen = async () => {
-            let data = await axios.get(`${BASE_URL}/popularWomen`);
-            setPopularWomen(data.data.newPopularWomen);
-        }
-        getPopularWomen();
-    })
+    let data = await axios.get(`${BASE_URL}/popularWomen`);
+    let popularWomen = await data.data.newPopularWomen;
 
     return (
         <div className='px-5 container mx-auto text-left mt-20'>
