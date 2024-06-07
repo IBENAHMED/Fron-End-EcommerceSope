@@ -15,6 +15,7 @@ const Navbar = () => {
     const handleMenuToggle = () => {
         setIsMenuOpen(!isMenuOpen);
     };
+
     return (
         <nav className='bg-white'>
             <div className='container py-3 mx-auto flex justify-between flex-wrap items-center px-5'>
@@ -52,7 +53,7 @@ const Navbar = () => {
                     {
                         cookies.token
                             ? <button
-                                onClick={() => { removeCookie("token"); window.location.replace("/SignUp") }}
+                                onClick={() => { removeCookie("token"); localStorage.removeItem("role"); window.location.replace("/SignUp") }}
                                 className="cursor-pointer transition duration-300 ease-in-out bg-white text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded-full hover:bg-gray-200">
                                 Logout
                             </button>
@@ -61,6 +62,15 @@ const Navbar = () => {
                                 className="cursor-pointer transition duration-300 ease-in-out bg-white text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded-full hover:bg-gray-200">
                                 Login
                             </button>
+                    }
+
+                    {
+                        cookies.token && window.localStorage.getItem("role") == "ADMIN"
+                            ?
+                            <button
+                                className="cursor-pointer transition duration-300 ease-in-out bg-white text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded-full hover:bg-gray-200">
+                                Dashbord
+                            </button> : <></>
                     }
 
                     <Link href="/card" passHref>
@@ -80,7 +90,7 @@ const Navbar = () => {
                     </button>
                 </div>
             </div>
-        </nav>
+        </nav >
     )
 }
 
