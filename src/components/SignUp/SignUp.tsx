@@ -10,6 +10,7 @@ const SignUp = () => {
     const router = useRouter();
 
     let [state, setState] = useState("login");
+    let [stateToke, setStateToke] = useState(true);
     let [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -25,6 +26,9 @@ const SignUp = () => {
         try {
             let data = await axios.post(`${BASE_URL}/login`, formData)
             if (data.data.token) {
+                // loading
+                setStateToke(false);
+
                 setCookie("token", data.data.token);
                 window.location.replace("/")
             } else {
@@ -46,6 +50,8 @@ const SignUp = () => {
 
                 let data = await axios.post(`${BASE_URL}/signup`, formData)
                 if (data.data.token) {
+                    // loading
+                    setStateToke(false);
 
                     setCookie("token", data.data.token);
                     window.location.replace("/")
@@ -129,7 +135,7 @@ const SignUp = () => {
                         type="submit"
                         className="w-full bg-red-500 text-white p-3 rounded-lg font-bold hover:bg-red-600"
                     >
-                        Continue
+                        {stateToke ? "Continue" : "Loading..."}
                     </button>
                 </form>
                 {

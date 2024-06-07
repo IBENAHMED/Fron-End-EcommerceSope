@@ -1,12 +1,40 @@
+import StripeCheckout from 'react-stripe-checkout';
 import './CardItem.css';
-import remove from '../../Assets/cart_cross_icon.png';
+import Swal from 'sweetalert2';
 
 const CardItem = ({
     all_products,
     cardItems,
     RemoveCardItems,
     gettotalPriceProducts,
+    cookies
 }: any) => {
+
+    let products: any = [];
+    const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+
+    let makePayment = (token: any) => {
+        const body = {
+            token,
+            products
+        };
+
+        return fetch(`${BASE_URL}/charge`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json", "token-auth": cookies.token },
+            body: JSON.stringify(body),
+        }).then((res) => {
+            if (res.status == 401) {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "error",
+                    title: "the user not authorized",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }
+        });
+    }
 
     return (
         <div>
@@ -28,6 +56,10 @@ const CardItem = ({
                             {
                                 all_products.map((e: any) => {
                                     if (cardItems[e._id] > 0) {
+
+                                        let updateProduct = { ...e, Qnt: cardItems[e._id] };
+                                        products = [...products, updateProduct]
+
                                         return (
                                             <tr key={e._id} className="border-b border-gray-200">
                                                 <td className="px-4 py-2">
@@ -71,7 +103,14 @@ const CardItem = ({
                             <span className='text-gray-800'>${gettotalPriceProducts()}</span>
                         </div>
                         <hr className='py-2' />
-                        <button className="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 mt-4">Add to Cart</button>
+                        <StripeCheckout
+                            stripeKey={`${process.env.NEXT_PUBLIC_PUBLISHABLE_KEY}`} // Your Stripe publishable key
+                            token={makePayment}
+                            amount={gettotalPriceProducts() * 100} // Amount in cents ($10)
+                            name="Example Store"
+                            description="Purchase"
+                            currency="USD"
+                        />
                     </div>
                     <div className='CardItem-right bg-white shadow-lg rounded-lg p-6'>
                         <p className='text-slate-500 mb-4'>If you have a promo code, enter it here:</p>

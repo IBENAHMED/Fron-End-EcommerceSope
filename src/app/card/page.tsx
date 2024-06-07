@@ -13,6 +13,8 @@ const page = () => {
         cardItems,
         RemoveCardItems,
         gettotalPriceProducts,
+        cookies
+
     } = useContext(ShopeProviderContext);
 
     return (
@@ -24,6 +26,7 @@ const page = () => {
                     cardItems={cardItems}
                     RemoveCardItems={RemoveCardItems}
                     gettotalPriceProducts={gettotalPriceProducts}
+                    cookies={cookies}
                 />
                 :
                 <div className='col-span-12 flex justify-center items-center h-screen'>

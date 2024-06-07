@@ -75,4 +75,4 @@ const page = (props: any) => {
     );
 };
 
-export default withAuth(page);
+export default page;

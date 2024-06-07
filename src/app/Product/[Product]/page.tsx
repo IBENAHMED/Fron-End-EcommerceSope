@@ -21,7 +21,10 @@ const page = (props: any) => {
                     ?
                     <div className='px-5'>
                         <Breadcrums product={product && product} />
-                        <ProductDispaly product={product && product} idProducts={props.params.Product} />
+                        <ProductDispaly
+                            product={product && product}
+                            idProducts={props.params.Product}
+                        />
                         <DiscriptionBox />
                         <RelatedProducts idProducts={props.params.Product} />
                     </div>
@@ -34,4 +37,4 @@ const page = (props: any) => {
     )
 }
 
-export default withAuth(page)
+export default page

@@ -1,6 +1,7 @@
 "use client"
 import Spinner from "@/components/Spinner/Spinner";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import { createContext, useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 export let ShopeProviderContext = createContext<any>(null);
@@ -13,6 +14,7 @@ const ShopeContext = ({ children }: any) => {
 
     let [all_products, setAll_Products]: any = useState();
     let [cardItems, setCardItems]: any = useState({});
+    let route = useRouter();
 
     let getDefaultCarts = async () => {
         if (cookies.token) {
@@ -63,6 +65,8 @@ const ShopeContext = ({ children }: any) => {
             })
             getDefaultCarts();
             return data.json();
+        } else {
+            route.push("/SignUp")
         }
     };
 
