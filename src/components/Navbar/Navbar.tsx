@@ -65,7 +65,7 @@ const Navbar = () => {
                     }
 
                     {
-                        cookies.token && window.localStorage.getItem("role") == "ADMIN"
+                        cookies.token && window.localStorage.getItem("role") == "USER"
                             ?
                             <button
                                 className="cursor-pointer transition duration-300 ease-in-out bg-white text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded-full hover:bg-gray-200">
