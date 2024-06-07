@@ -1,0 +1,4 @@
+.Sidebar {
+    height: calc(100vh - 56px);
+    /* max-width: 300px; */
+}

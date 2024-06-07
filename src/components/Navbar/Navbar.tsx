@@ -37,12 +37,12 @@ const Navbar = () => {
                                 Men
                             </li>
                         </Link>
-                        <Link href="women">
+                        <Link href="/women">
                             <li className='cursor-pointer px-5 py-3 rounded font-medium hover:bg-slate-200 transition duration-300'>
                                 Women
                             </li>
                         </Link>
-                        <Link href="kid">
+                        <Link href="/kid">
                             <li className='cursor-pointer px-5 py-3 rounded font-medium hover:bg-slate-200 transition duration-300'>
                                 Kids
                             </li>
@@ -65,12 +65,12 @@ const Navbar = () => {
                     }
 
                     {
-                        cookies.token && window.localStorage.getItem("role") == "USER"
+                        cookies.token && window.localStorage.getItem("role") == "ADMIN"
                             ?
-                            <button
+                            <Link href="/admin"
                                 className="cursor-pointer transition duration-300 ease-in-out bg-white text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded-full hover:bg-gray-200">
                                 Dashbord
-                            </button> : <></>
+                            </Link> : <></>
                     }
 
                     <Link href="/card" passHref>

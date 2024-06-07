@@ -30,9 +30,11 @@ const SignUp = () => {
                 setStateToke(false);
 
                 setCookie("token", data.data.token);
+
                 if (typeof window !== 'undefined') {
                     localStorage.setItem("role", data.data.role);
                 }
+
                 window.location.replace("/")
             } else {
                 alert(data.data.err)
