@@ -1,5 +1,5 @@
 "use client"
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import logo from '../../Assets/logo.png';
 import cart_icon from '../../Assets/cart_icon.png';
 import Link from 'next/link';
@@ -65,12 +65,15 @@ const Navbar = () => {
                     }
 
                     {
-                        cookies.token && localStorage.getItem("role") == "ADMIN"
+                        typeof window !== 'undefined'
                             ?
-                            <Link href="/admin"
-                                className="cursor-pointer transition duration-300 ease-in-out bg-white text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded-full hover:bg-gray-200">
-                                Dashbord
-                            </Link> : <></>
+                            cookies.token && window.localStorage.getItem("role") == "ADMIN"
+                                ?
+                                <Link href="/admin"
+                                    className="cursor-pointer transition duration-300 ease-in-out bg-white text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded-full hover:bg-gray-200">
+                                    Dashbord
+                                </Link> : <></>
+                            : <></>
                     }
 
                     <Link href="/card" passHref>
