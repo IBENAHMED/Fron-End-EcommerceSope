@@ -65,12 +65,12 @@ const Navbar = () => {
                     }
 
                     {
-                        window.localStorage.getItem("role") == "ADMIN"
-                            ?
-                            <Link href="/admin"
-                                className="cursor-pointer transition duration-300 ease-in-out bg-white text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded-full hover:bg-gray-200">
-                                Dashbord
-                            </Link> : <></>
+                        typeof window !== 'undefined' && window.localStorage.getItem("role") === "ADMIN"
+                            ? <Link href="/admin" className="cursor-pointer transition duration-300 ease-in-out bg-white text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded-full hover:bg-gray-200">
+                                Admin Panel
+                            </Link>
+                            : null
+
                     }
 
                     <Link href="/card" passHref>
