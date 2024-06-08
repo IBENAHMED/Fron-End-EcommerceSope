@@ -43,40 +43,21 @@ const page = () => {
     // Post product in db
     if (responsData.success) {
       product.img = responsData.image_url;
-      // return await axios.post(`http://localhost:4000/addproducts`, product, {
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //     'token-auth': cookies.token,
-      //   }
-      // }).then((res) => {
-      //   if (res.status == 403) {
-      //     Swal.fire({
-      //       position: "top-end",
-      //       icon: "error",
-      //       title: "Just Admin Can Add products",
-      //       showConfirmButton: false,
-      //       timer: 1500
-      //     });
-      //   }
-      // }).catch((err: any) => {
-      //   Swal.fire({
-      //     position: "top-end",
-      //     icon: "error",
-      //     title: "Product Not Added",
-      //     showConfirmButton: false,
-      //     timer: 1500
-      //   });
-      // });
       await fetch(`${BASE_URL}/addproducts`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'token-auth': cookies.token,
         },
-        body: JSON.stringify({
-          product
-        })
+        body: JSON.stringify(product)
       }).then((res) => {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Product Added",
+          showConfirmButton: false,
+          timer: 500
+        });
         if (res.status == 403) {
           Swal.fire({
             position: "top-end",
