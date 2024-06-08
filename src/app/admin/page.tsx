@@ -62,7 +62,7 @@ const page = () => {
           Swal.fire({
             position: "top-end",
             icon: "error",
-            title: "Just admin can remove products",
+            title: "Just admin can remove the products",
             showConfirmButton: false,
             timer: 1500
           });
