@@ -1,5 +1,5 @@
 "use client"
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import logo from '../../Assets/logo.png';
 import cart_icon from '../../Assets/cart_icon.png';
 import Link from 'next/link';
@@ -15,6 +15,23 @@ const Navbar = () => {
     const handleMenuToggle = () => {
         setIsMenuOpen(!isMenuOpen);
     };
+
+    const [role, setRole] = useState<string | null>(null);
+
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            const role = window.localStorage.getItem("role");
+            setRole(role);
+        }
+    }, []);
+
+    let handleLogout = () => {
+        removeCookie("token");
+        if (typeof window !== 'undefined') {
+            window.localStorage.removeItem("role");
+            window.location.replace("/SignUp");
+        }
+    }
 
     return (
         <nav className='bg-white'>
@@ -53,7 +70,7 @@ const Navbar = () => {
                     {
                         cookies.token
                             ? <button
-                                onClick={() => { removeCookie("token"); localStorage.removeItem("role"); window.location.replace("/SignUp") }}
+                                onClick={handleLogout}
                                 className="cursor-pointer transition duration-300 ease-in-out bg-white text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded-full hover:bg-gray-200">
                                 Logout
                             </button>
@@ -65,11 +82,12 @@ const Navbar = () => {
                     }
 
                     {
-                        typeof window !== 'undefined' && window.localStorage.getItem("role") === "ADMIN"
+                        role === "ADMIN"
                             ? <Link href="/admin" className="cursor-pointer transition duration-300 ease-in-out bg-white text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded-full hover:bg-gray-200">
                                 Admin Panel
                             </Link>
                             : null
+
 
                     }
 
