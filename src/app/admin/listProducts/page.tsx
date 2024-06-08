@@ -31,6 +31,13 @@ const page = () => {
                 id
             })
         }).then((res) => {
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "products removed",
+                showConfirmButton: false,
+                timer: 1500
+            });
             if (res.status == 403) {
                 Swal.fire({
                     position: "top-end",

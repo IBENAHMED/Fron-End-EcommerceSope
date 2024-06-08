@@ -1,15 +1,30 @@
+"use client"
 import './NewCollections.css';
-import new_collections from '../../Assets/new_collections'
 import Item from '../Item/Item';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import Spinner from '../Spinner/Spinner';
+import ShopeContext, { ShopeProviderContext } from '@/context/ShopeContext';
 
-const NewCollections = async () => {
+const NewCollections = () => {
     const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
-    let data = await axios.get(`${BASE_URL}/newcollection`);
-    let newCollection = await data.data.newCollection
+    let { cookies } = useContext(ShopeProviderContext)
+
+    let [newCollection, setNewCollection] = useState([]);
+
+    useEffect(() => {
+        let fetchData = async () => {
+            try {
+                let data = await axios.get(`${BASE_URL}/newcollection`);
+                console.log("hhhhhhhhhh" + data)
+                setNewCollection(data.data.newCollection);
+            } catch (err) {
+                console.log("err" + err)
+            }
+        };
+        fetchData();
+    }, [cookies.token])
 
     return (
         <div className='px-5 container mx-auto text-left mt-20'>
