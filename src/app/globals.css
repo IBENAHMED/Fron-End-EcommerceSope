@@ -33,3 +33,15 @@ body {
   display: grid;
   grid-template-columns: 150px 1fr 150px;
 }
+
+@media (max-width: 767px) {
+  .app {
+    display: grid;
+    grid-template-columns: 100px 1fr 100px;
+  }
+}
+
+/* .gridSystem {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr))
+} */

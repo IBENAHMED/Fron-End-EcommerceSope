@@ -36,17 +36,17 @@ const ProductDispaly = ({ product, idProducts }: any) => {
                         <div className="text-gray-500 line-through mr-2">${product && product.old_price}</div>
                         <div className="text-xl text-red-600">${product && product.new_price}</div>
                     </div>
-                    <div className="mb-4">
+                    <div className="mb-4 text-xs sm:text-md">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel ligula ut nunc feugiat aliquet. Nullam ac lacus sed dolor suscipit pretium. Cras ut facilisis arcu, in malesuada lorem. Nam eu urna a est convallis fermentum. Sed in justo lectus.
                     </div>
-                    <ul className="flex space-x-2 mb-4">
-                        <li className="border border-gray-300 px-2 py-1">S</li>
-                        <li className="border border-gray-300 px-2 py-1">M</li>
-                        <li className="border border-gray-300 px-2 py-1">L</li>
-                        <li className="border border-gray-300 px-2 py-1">XL</li>
-                        <li className="border border-gray-300 px-2 py-1">XXL</li>
+                    <ul className="flex flex-wrap space-x-2 mb-4">
+                        <li className="border border-gray-300 p-1 sm:px-2 py-1">S</li>
+                        <li className="border border-gray-300 p-1 sm:px-2 py-1">M</li>
+                        <li className="border border-gray-300 p-1 sm:px-2 py-1">L</li>
+                        <li className="border border-gray-300 p-1 sm:px-2 py-1">XL</li>
+                        <li className="border border-gray-300 p-1 sm:px-2 py-1">XXL</li>
                     </ul>
-                    <button onClick={() => AddCardItems(idProducts)} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">ADD to CART</button>
+                    <button onClick={() => AddCardItems(idProducts)} className="bg-blue-500 text-white text-xs px-2 py-1 rounded hover:bg-blue-600 md:px-4 md:py-2 sm:text-md">ADD to CART</button>
                     <p className="mt-4">
                         <span className="font-bold">Category:</span> <span>Women, T-Shirt, Crop Top</span>
                     </p>

@@ -32,7 +32,7 @@ const CardItem = ({
 
     return (
         <div className="bg-slate-50 pt-7 px-8">
-            <div className="container mx-auto bg-slate-50 p-6 rounded-lg shadow-md overflow-auto" style={{ maxHeight: "calc(100vh - 105px)" }}>
+            <div className="container mx-auto bg-slate-50 p-6 rounded-lg shadow-md overflow-auto" style={{ "maxHeight": "calc(100vh - 105px)" }}>
                 <h1 className="text-2xl font-bold mb-4 text-gray-800">All Products List</h1>
                 <table className="w-full text-left table-auto border-collapse">
                     <thead className="bg-gray-100 text-gray-600">
