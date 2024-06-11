@@ -4,7 +4,8 @@ import Item from '../Item/Item';
 import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import Spinner from '../Spinner/Spinner';
-import ShopeContext, { ShopeProviderContext } from '@/context/ShopeContext';
+import { ShopeProviderContext } from '@/context/ShopeContext';
+import { useRouter } from 'next/navigation';
 
 const LatestArrivalsItem = () => {
     const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
@@ -12,15 +13,15 @@ const LatestArrivalsItem = () => {
     let { cookies } = useContext(ShopeProviderContext)
 
     let [newCollection, setNewCollection] = useState([]);
+    let route = useRouter()
 
     useEffect(() => {
         let fetchData = async () => {
             try {
                 let data = await axios.get(`${BASE_URL}/newcollection`);
-                console.log("hhhhhhhhhh" + data)
                 setNewCollection(data.data.newCollection);
             } catch (err) {
-                console.log("err" + err)
+                route.push('/error')
             }
         };
         fetchData();
