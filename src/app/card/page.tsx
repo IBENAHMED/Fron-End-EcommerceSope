@@ -18,7 +18,7 @@ const page = () => {
     } = useContext(ShopeProviderContext);
 
     return (
-        <div>
+        <div className="">
             {all_products
                 ?
                 <CardItem

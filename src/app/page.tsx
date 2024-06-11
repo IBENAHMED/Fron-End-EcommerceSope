@@ -1,23 +1,13 @@
-import Hero from "@/components/Hero/Hero";
-import NewCollections from "@/components/NewCollections/NewCollections";
-import NewLetters from "@/components/NewLetters/NewLetters";
-import Offre from "@/components/Offre/Offre";
-import Popular from "@/components/Popular/Popular";
-import Spinner from "@/components/Spinner/Spinner";
-import React, { createContext, useState } from "react";
+import React from "react";
+import HomeItem from "@/components/HomeItem/HomeItem";
 
 export default function Home() {
 
   return (
 
 
-    <main>
-      <Hero />
-      <Popular />
-      <Offre />
-      <NewCollections />
-      <NewLetters />
-    </main>
-    // </appContext.Provider>
+    <div>
+      <HomeItem />
+    </div>
   );
 }

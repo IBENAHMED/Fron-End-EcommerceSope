@@ -14,15 +14,16 @@ interface ItemProps {
 // Use the interface in the component
 const Item: React.FC<ItemProps> = ({ id, name, image, new_price, old_price }) => {
     return (
-        <div className='transform mb-3 transition-transform hover:scale-105'>
-            <Link href={`/Product/${id}`} className='block overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-shadow'>
-                <img src={image} alt={name} className='w-full h-auto object-cover transform transition-transform duration-300 hover:scale-110' />
-            </Link>
-            <div className='mt-3 text-center'>
-                <h3 className='text-lg font-semibold text-gray-800'>{name}</h3>
-                <p className='text-lg text-pink-600'>
-                    ${new_price} <span className='line-through text-slate-400'>${old_price}</span>
-                </p>
+        <div className="mb-5">
+            <div className="bg-white shadow-lg rounded-lg p-6 transition-transform duration-300 hover:scale-105 animate-slideIn">
+                <Link href={`/Product/${id}`} className="block overflow-hidden rounded-lg shadow-lg transition-shadow duration-300 hover:shadow-2xl">
+                    <img src={image} alt={name} className="w-full h-auto object-cover transition-transform duration-300 hover:scale-110" />
+                </Link>
+                <h3 className="mt-4 font-semibold text-sm text-center">{name}</h3>
+                <div className='flex justify-center items-center gap-4'>
+                    <p className="mt-2 text-gray-500 line-through text-center">${old_price}</p>
+                    <p className="mt-1 text-blue-600 font-bold text-center">${new_price}</p>
+                </div>
             </div>
         </div>
     );

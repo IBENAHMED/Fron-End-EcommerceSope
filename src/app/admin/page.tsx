@@ -2,9 +2,10 @@
 import React, { useContext, useState } from 'react'
 import upload_area from '../../Assets/upload_area.svg'
 import axios from 'axios';
-import Swal from 'sweetalert2';
 import withAuthandRole from '@/util/PrivateRouterAdmin';
 import { ShopeProviderContext } from '@/context/ShopeContext';
+import Swale from '@/components/Swal/Swal';
+import { useRouter } from 'next/navigation';
 
 const page = () => {
 
@@ -20,6 +21,7 @@ const page = () => {
   });
 
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+  let route = useRouter();
 
   let addProducts = async (e: any) => {
     e.preventDefault();
@@ -28,21 +30,18 @@ const page = () => {
     // upload image
     let newFormat = new FormData();
     newFormat.append('product', img);
+
     await axios.post(`${BASE_URL}/upload`, newFormat).then((res) => {
       responsData = res.data
     }).catch(() => {
-      Swal.fire({
-        position: "top-end",
-        icon: "error",
-        title: "Product Not Added",
-        showConfirmButton: false,
-        timer: 500
-      });
+      route.push("/error")
     });
 
     // Post product in db
     if (responsData.success) {
+
       product.img = responsData.image_url;
+
       await fetch(`${BASE_URL}/addproducts`, {
         method: 'POST',
         headers: {
@@ -50,37 +49,21 @@ const page = () => {
           'token-auth': cookies.token,
         },
         body: JSON.stringify(product)
+
       }).then((res) => {
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Product Added",
-          showConfirmButton: false,
-          timer: 500
-        });
-        if (res.status == 403) {
-          Swal.fire({
-            position: "top-end",
-            icon: "error",
-            title: "Just admin can remove products",
-            showConfirmButton: false,
-            timer: 1500
-          });
-        }
+        res.status == 200 ?
+          Swale("success", "Product Added") :
+          res.status == 403 ? Swale("error", "Just admin can add products") :
+            route.push("/error");
+
       }).catch((err) => {
-        Swal.fire({
-          position: "top-end",
-          icon: "error",
-          title: "product Not Added",
-          showConfirmButton: false,
-          timer: 1500
-        });
+        route.push("/error")
       });
     };
   };
 
   return (
-    <div className="bg-slate-300">
+    <div className="bg-slate-50 border border-slate-300 rounded">
       <div className="container mx-auto p-10">
         <form>
           {/* <!-- Product Title --> */}
@@ -131,7 +114,7 @@ const page = () => {
 
           {/* <!-- Add Button --> */}
           <div className="mt-6">
-            <button onClick={(e: any) => addProducts(e)} className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+            <button onClick={(e: any) => addProducts(e)} className="w-full flex justify-center mt-4 px-6 py-2 bg-black text-white rounded-lg hover:bg-gray-800">
               ADD
             </button>
           </div>

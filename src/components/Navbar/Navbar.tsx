@@ -2,19 +2,16 @@
 import React, { useContext, useEffect, useState } from 'react';
 import logo from '../../Assets/logo.png';
 import cart_icon from '../../Assets/cart_icon.png';
+import profile from '../../Assets/profile.jpeg';
 import Link from 'next/link';
 import { ShopeProviderContext } from '@/context/ShopeContext';
 import { useRouter } from 'next/navigation';
+import './Navbar.css'
 
 const Navbar = () => {
 
     let { getTotalCartItemAdded, cookies, removeCookie } = useContext(ShopeProviderContext)
     let router = useRouter();
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-    const handleMenuToggle = () => {
-        setIsMenuOpen(!isMenuOpen);
-    };
 
     const [role, setRole] = useState<string | null>(null);
 
@@ -34,81 +31,78 @@ const Navbar = () => {
     }
 
     return (
-        <nav className='bg-white'>
-            <div className='container py-3 mx-auto flex justify-between flex-wrap items-center px-5'>
-                <Link href="/">
-                    <div className='flex items-center gap-5'>
-                        <img src={logo.src} alt='image logo' className='w-12 h-12' />
-                        <p className='text-2xl'>SHOPPER</p>
-                    </div>
-                </Link>
-                <div className={`md:flex md:items-center ${isMenuOpen ? 'block' : 'hidden'}`}>
-                    <ul className='md:flex md:justify-around'>
-                        <Link href="/">
-                            <li className='cursor-pointer px-5 py-3 rounded font-medium hover:bg-slate-200 transition duration-300'>
-                                Shope
-                            </li>
+        <header className="navbar z-10 bg-slate-50 p-4">
+            <div className="container mx-auto flex justify-between items-center">
+                {/* <!-- Logo and Links --> */}
+                <div className="flex items-center space-x-6">
+                    {/* <!-- Logo --> */}
+                    <Link href="/" className="flex items-center">
+                        <img src={profile.src} alt="Logo" className="rounded-full" style={{ "width": "35px", "height": "35px" }} />
+                        <span className="ml-2 font-bold text-lg text-gray-900">COLORLIB STORE</span>
+                    </Link>
+                    {/* <!-- Links --> */}
+                    <nav className="hidden md:flex space-x-4">
+                        <Link className="text-gray-600 hover:text-gray-900" href="/">
+                            Home
                         </Link>
-                        <Link href="/men">
-                            <li className='cursor-pointer px-5 py-3 rounded font-medium hover:bg-slate-200 transition duration-300'>
-                                Men
-                            </li>
+                        <Link className="text-gray-600 hover:text-gray-900" href="/men">
+                            Men
                         </Link>
-                        <Link href="/women">
-                            <li className='cursor-pointer px-5 py-3 rounded font-medium hover:bg-slate-200 transition duration-300'>
-                                Women
-                            </li>
+                        <Link className="text-gray-600 hover:text-gray-900" href="/women">
+                            Women
                         </Link>
-                        <Link href="/kid">
-                            <li className='cursor-pointer px-5 py-3 rounded font-medium hover:bg-slate-200 transition duration-300'>
-                                Kids
-                            </li>
+                        <Link className="text-gray-600 hover:text-gray-900" href="/kid">
+                            Kids
                         </Link>
-                    </ul>
+                    </nav>
                 </div>
-                <div className='flex items-center gap-5'>
-                    {
-                        cookies.token
-                            ? <button
-                                onClick={handleLogout}
-                                className="cursor-pointer transition duration-300 ease-in-out bg-white text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded-full hover:bg-gray-200">
-                                Logout
-                            </button>
-                            : <button
-                                onClick={() => router.push("/SignUp")}
-                                className="cursor-pointer transition duration-300 ease-in-out bg-white text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded-full hover:bg-gray-200">
-                                Login
-                            </button>
-                    }
+                {/* <!-- Search and Cart --> */}
+                <div className="flex items-center space-x-4">
+                    {/* <!-- Search Bar --> */}
+                    <div className="relative w-full max-w-sm">
+                        <input type="text" placeholder="Search for products..." className="w-full py-2 pl-4 pr-10 bg-gray-100 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-gray-400" />
+                        <button className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-600">
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-4.35-4.35M9 17A8 8 0 119 1a8 8 0 010 16z"></path>
+                            </svg>
+                        </button>
+                    </div>
 
-                    {
-                        role === "ADMIN"
-                            ? <Link href="/admin" className="cursor-pointer transition duration-300 ease-in-out bg-white text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded-full hover:bg-gray-200">
-                                Admin Panel
-                            </Link>
-                            : null
+                    <div className='flex items-center gap-5'>
+                        {
+                            cookies.token
+                                ? <button
+                                    onClick={handleLogout}
+                                    className="cursor-pointer transition duration-300 ease-in-out bg-white text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded-full hover:bg-gray-200">
+                                    Logout
+                                </button>
+                                : <button
+                                    onClick={() => router.push("/SignUp")}
+                                    className="cursor-pointer transition duration-300 ease-in-out bg-white text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded-full hover:bg-gray-200">
+                                    Login
+                                </button>
+                        }
 
+                        {
+                            cookies.token && role === "ADMIN"
+                                ? <Link href="/admin" className="cursor-pointer transition duration-300 ease-in-out bg-white text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded-full hover:bg-gray-200">
+                                    Dashbord
+                                </Link>
+                                : null
+                        }
+                    </div>
 
-                    }
-
-                    <Link href="/card" passHref>
-                        <div className='relative'>
-                            <img src={cart_icon.src} alt='image cart_icon' className='w-8 h-8' />
-                            <span className='nav-cart-count absolute right-0 top-0 bg-red-600 text-white px-1 text-xs rounded'>
-                                {getTotalCartItemAdded()}
-                            </span>
-                        </div>
+                    {/* <!-- Cart Icon --> */}
+                    <Link className='relative text-gray-600' href="/card">
+                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3h2l.4 2M7 13h10l1.38-6.39a1 1 0 00-.97-1.21H5.59a1 1 0 00-.98.79L3.3 9H5"></path>
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 13V17a1 1 0 01-1 1H8a1 1 0 01-1-1v-4H4l1.39-6.58A2 2 0 017.34 4h9.32a2 2 0 011.95 1.58L20 13h-4z"></path>
+                        </svg>
+                        <span className="absolute top-0 right-0 block w-4 h-4 text-xs text-center text-white bg-blue-500 rounded-full">{getTotalCartItemAdded()}</span>
                     </Link>
                 </div>
-                <div className='md:hidden'>
-                    <button onClick={handleMenuToggle} className='focus:outline-none'>
-                        <svg className='w-6 h-6' fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </button>
-                </div>
             </div>
-        </nav >
+        </header>
     )
 }
 

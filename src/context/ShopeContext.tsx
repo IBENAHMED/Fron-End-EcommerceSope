@@ -1,5 +1,4 @@
 "use client"
-import Spinner from "@/components/Spinner/Spinner";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { createContext, useEffect, useState } from "react";
@@ -9,7 +8,6 @@ export let ShopeProviderContext = createContext<any>(null);
 const ShopeContext = ({ children }: any) => {
 
     const [cookies, setCookie, removeCookie] = useCookies(['token']);
-
     const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
     let [all_products, setAll_Products]: any = useState();
@@ -28,7 +26,7 @@ const ShopeContext = ({ children }: any) => {
                 setCardItems(response.data.cartData);
 
             } catch (error) {
-                console.error('Error fetching cart data:', error);
+                route.push("/error");
             }
         }
     }
@@ -43,7 +41,7 @@ const ShopeContext = ({ children }: any) => {
                 let res = await axios.get(`${BASE_URL}/getallproducts`);
                 setAll_Products(res.data.allPrudcts);
             } catch (err) {
-                console.log("err" + err)
+                route.push("/error");
             }
         };
         fetchData();
@@ -53,7 +51,7 @@ const ShopeContext = ({ children }: any) => {
 
     let AddCardItems = async (id: any) => {
         if (cookies.token) {
-            let data = await fetch(`${BASE_URL}/userAddPoduct`, {
+            await fetch(`${BASE_URL}/userAddPoduct`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -62,9 +60,12 @@ const ShopeContext = ({ children }: any) => {
                 body: JSON.stringify({
                     id
                 }),
+            }).then((res) => {
+                if (res.status !== 200) {
+                    route.push("/error")
+                }
             })
             getDefaultCarts();
-            return data.json();
         } else {
             route.push("/SignUp")
         }
@@ -72,17 +73,24 @@ const ShopeContext = ({ children }: any) => {
 
     let RemoveCardItems = async (id: any) => {
         if (cookies.token) {
-            let data = await fetch(`${BASE_URL}/userRemovePoduct`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'token-auth': cookies.token,
-                },
-                body: JSON.stringify({
-                    id
-                }),
-            })
-            getDefaultCarts();
+            let ckeck = confirm("do you want remove this product");
+            if (ckeck) {
+                await fetch(`${BASE_URL}/userRemovePoduct`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'token-auth': cookies.token,
+                    },
+                    body: JSON.stringify({
+                        id
+                    }),
+                }).then((res) => {
+                    if (res.status !== 200) {
+                        route.push("/error")
+                    }
+                })
+                getDefaultCarts();
+            }
         }
     };
 

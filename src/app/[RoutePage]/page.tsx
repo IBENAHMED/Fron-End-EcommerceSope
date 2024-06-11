@@ -1,12 +1,11 @@
 "use client"
 
-import React, { Suspense, useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import banner_mens from '../../Assets/banner_mens.png'
 import banner_kids from '../../Assets/banner_kids.png'
 import banner_women from '../../Assets/banner_women.png'
 import { ShopeProviderContext } from '@/context/ShopeContext';
 import Item from '@/components/Item/Item';
-import withAuth from '@/util/PrivateRouter'
 import Spinner from '@/components/Spinner/Spinner'
 
 const page = (props: any) => {
