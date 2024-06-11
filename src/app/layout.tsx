@@ -6,6 +6,8 @@ import "./globals.css";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
 import ShopeContext from "@/context/ShopeContext";
+import Left from "@/components/Left/Left";
+import Right from "@/components/Right/Right";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,11 +33,23 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={poppins.className}>
-        <ShopeContext>
-          <Navbar />
-          {children}
-          <Footer />
-        </ShopeContext>
+        <div className="bg-slate-50">
+          <ShopeContext>
+            <Navbar />
+            <div className="app ">
+              <div>
+                <Left />
+              </div>
+              <div>
+                {children}
+              </div>
+              <div>
+                <Right />
+              </div>
+            </div>
+            <Footer />
+          </ShopeContext>
+        </div>
       </body>
     </html>
   );

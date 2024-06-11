@@ -17,6 +17,7 @@
     "react": "^18",
     "react-cookie": "^7.1.4",
     "react-dom": "^18",
+    "react-icons": "^5.2.1",
     "react-stripe-checkout": "^2.6.3",
     "sweetalert2": "^11.11.0"
   },

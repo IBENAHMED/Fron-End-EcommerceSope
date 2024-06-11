@@ -3,7 +3,7 @@ import React, { useContext, useState } from 'react';
 import axios from "axios";
 import { useRouter } from 'next/navigation';
 import { ShopeProviderContext } from '@/context/ShopeContext';
-import Swal from 'sweetalert2';
+import Swale from '../Swal/Swal';
 
 const SignUp = () => {
 
@@ -17,7 +17,7 @@ const SignUp = () => {
         password: "",
     });
 
-    let { cookies, setCookie, removeCookie } = useContext(ShopeProviderContext)
+    let { setCookie } = useContext(ShopeProviderContext)
 
     const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -37,10 +37,10 @@ const SignUp = () => {
 
                 window.location.replace("/")
             } else {
-                alert(data.data.err)
+                Swale("error", `${data.data.err}`)
             };
         } catch (err) {
-            alert("try again the user not added")
+            router.push("/error");
         };
     };
 
@@ -51,7 +51,7 @@ const SignUp = () => {
         const passwordRegular = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).{8,}$/ig;
 
         try {
-            if (emailRegular.test(formData.email) && passwordRegular.test(formData.password)) {
+            if (formData.name.length > 4 && emailRegular.test(formData.email) && passwordRegular.test(formData.password)) {
 
                 let data = await axios.post(`${BASE_URL}/signup`, formData)
                 if (data.data.token) {
@@ -63,94 +63,91 @@ const SignUp = () => {
                     window.location.replace("/")
 
                 } else {
-                    Swal.fire({
-                        position: "top-end",
-                        icon: "error",
-                        title: "token not disponible",
-                        showConfirmButton: false,
-                        timer: 1000
-                    });
+                    Swale("error", "token not disponible")
                 };
             } else {
-                Swal.fire({
-                    position: "top-end",
-                    icon: "error",
-                    title: "email and password aren't strong",
-                    showConfirmButton: false,
-                    timer: 1000
-                });
+                Swale("error", "email and password aren't strong")
             }
         } catch (err) {
-            Swal.fire({
-                position: "top-end",
-                icon: "error",
-                title: "try again the user not added",
-                showConfirmButton: false,
-                timer: 1000
-            });
+            router.push("/error");
         };
     };
 
     return (
-        <div className="flex items-center justify-center min-h-screen bg-gray-100">
-            <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+        <div className="flex items-center justify-center min-h-screen bg-gray-50">
+            <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md transform transition-transform duration-500 hover:scale-105">
                 {
                     state === "Sign Up"
-                        ? <h2 className="text-2xl font-bold mb-6 text-center">Sign Up</h2>
-                        : <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
+                        ? <h2 className="text-3xl font-bold mb-6 text-center text-gray-900">Sign Up</h2>
+                        : <h2 className="text-3xl font-bold mb-6 text-center text-gray-900">Login</h2>
                 }
-                <form action="#">
+                <form>
                     {
                         state === "Sign Up"
                             ?
                             <div className="mb-4">
-                                <label htmlFor="name" className="block text-gray-700">Your Name</label>
+                                <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-700">
+                                    Username
+                                </label>
                                 <input
                                     onChange={(e) => setFormData({ ...formData, [e.target.name]: e.target.value })}
-                                    name="name"
-                                    type="text"
+                                    type="email"
                                     id="name"
-                                    className="w-full p-3 border rounded-lg mt-2"
-                                    placeholder="Your Name"
+                                    name="name"
+                                    placeholder="Username"
+                                    className="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-200"
                                 />
                             </div>
                             : <></>
                     }
                     <div className="mb-4">
-                        <label htmlFor="email" className="block text-gray-700">Email Address</label>
+                        <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-700">
+                            Email Address
+                        </label>
                         <input
                             onChange={(e) => setFormData({ ...formData, [e.target.name]: e.target.value })}
-                            name="email"
                             type="email"
                             id="email"
-                            className="w-full p-3 border rounded-lg mt-2"
-                            placeholder="Email Address" />
+                            name="email"
+                            placeholder="Email Address"
+                            className="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-200"
+                        />
                     </div>
-                    <div className="mb-6">
-                        <label htmlFor="password" className="block text-gray-700">Password</label>
+                    <div className="mb-4">
+                        <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-700">
+                            Password
+                        </label>
                         <input
                             onChange={(e) => setFormData({ ...formData, [e.target.name]: e.target.value })}
-                            name="password"
                             type="password"
                             id="password"
-                            className="w-full p-3 border rounded-lg mt-2"
-                            placeholder="Password" />
+                            name="password"
+                            placeholder="Password"
+                            className="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-200"
+                        />
                     </div>
-                    <button
-                        onClick={(e: any) => state === "Sign Up" ? SignUpUser(e) : login(e)}
-                        type="submit"
-                        className="w-full bg-red-500 text-white p-3 rounded-lg font-bold hover:bg-red-600"
-                    >
-                        {stateToke ? "Continue" : "Loading..."}
-                    </button>
+                    <div className="mb-6">
+                        <button
+                            onClick={(e: any) => state === "Sign Up" ? SignUpUser(e) : login(e)}
+                            type="submit"
+                            className="w-full bg-blue-700 text-white py-3 px-4 rounded-lg hover:bg-blue-800 transition-colors duration-300"
+                        >
+                            {stateToke ? "Continue" : "Loading..."}
+                        </button>
+                    </div>
                 </form>
-                {
-                    state === "Sign Up"
-                        ? <p className="text-center mt-4">Already have an account? <a onClick={() => setState("login")} href="#" className="text-red-500 font-bold">Login here</a></p>
-                        : <p className="text-center mt-4">create new account? <a onClick={() => setState("Sign Up")} href="#" className="text-red-500 font-bold">Create here</a></p>
-                }
+                <div className="text-center mt-4">
+                    {
+                        state === "Sign Up"
+                            ? <p className="text-center mt-4">Already have an account? <a onClick={() => setState("login")} href="#" className="text-blue-700 hover:underline">Login here</a></p>
+                            : <p className="text-center mt-4">create new account? <a onClick={() => setState("Sign Up")} href="#" className="text-blue-700 hover:underline">Create here</a></p>
+                    }
+                </div>
             </div>
         </div>
+
+
+
     )
 }
 

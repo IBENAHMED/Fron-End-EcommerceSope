@@ -6,8 +6,7 @@ import ProductDispaly from '@/components/ProductDispaly/ProductDispaly';
 import RelatedProducts from '@/components/RelatedProducts/RelatedProducts';
 import Spinner from '@/components/Spinner/Spinner';
 import { ShopeProviderContext } from '@/context/ShopeContext'
-import withAuth from '@/util/PrivateRouter';
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 
 const page = (props: any) => {
 

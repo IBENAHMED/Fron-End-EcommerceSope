@@ -1,0 +1,5 @@
+.left {
+    height: calc(100vh - 73.33px);
+    position: sticky;
+    top: 73.33px;
+}

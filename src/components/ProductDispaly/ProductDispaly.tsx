@@ -4,26 +4,10 @@ import './ProductDispaly.css'
 import star_icon from '../../Assets/star_icon.png'
 import star_dull_icon from '../../Assets/star_dull_icon.png'
 import { ShopeProviderContext } from '@/context/ShopeContext'
-// import StripeCheckout from 'react-stripe-checkout'
 
 const ProductDispaly = ({ product, idProducts }: any) => {
 
-    let { cookies, cardItems, AddCardItems } = useContext(ShopeProviderContext);
-
-    // let makePayment = (token: any) => {
-    //     const body = {
-    //         token,
-    //         product
-    //     };
-
-    //     return fetch("http://localhost:4000/charge", {
-    //         method: "POST",
-    //         headers: { "Content-Type": "application/json" },
-    //         body: JSON.stringify(body),
-    //     }).then((res) => {
-    //         console.log(res.status)
-    //     });
-    // }
+    let { AddCardItems } = useContext(ShopeProviderContext);
 
     return (
         <div className="py-6">
@@ -63,14 +47,6 @@ const ProductDispaly = ({ product, idProducts }: any) => {
                         <li className="border border-gray-300 px-2 py-1">XXL</li>
                     </ul>
                     <button onClick={() => AddCardItems(idProducts)} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">ADD to CART</button>
-                    {/* <StripeCheckout
-                        stripeKey={`${process.env.NEXT_PUBLIC_PUBLISHABLE_KEY}`} // Your Stripe publishable key
-                        token={makePayment}
-                        amount={product.new_price * 100} // Amount in cents ($10)
-                        name="Example Store"
-                        description="Purchase"
-                        currency="USD"
-                    /> */}
                     <p className="mt-4">
                         <span className="font-bold">Category:</span> <span>Women, T-Shirt, Crop Top</span>
                     </p>
