@@ -41,14 +41,14 @@ const Left = () => {
     return (
         <div className='left bg-slate-50 h-screen'>
             <div className='p-5'>
-                <p className='text-xs  text-slate-500  mb-5'>Collections</p>
-                <ul>
+                <p className='text-xs text-slate-500  mb-5'>Collections</p>
+                <ul className=''>
                     {
                         list.map((e: string, i: number) => {
                             return (
                                 <li key={i}
                                     onClick={handleClick}
-                                    className="cursor-pointer text-sm p-1 text-gray-600 hover:text-gray-900">
+                                    className="cursor-pointer p-1 text-gray-600 hover:text-gray-900 text-xs md:text-sm">
                                     {e}
                                 </li>
                             )
@@ -58,10 +58,10 @@ const Left = () => {
                         role == "ADMIN" ?
                             <>
                                 <Link href="/admin" >
-                                    <li className='cursor-pointer text-sm p-1 text-gray-600 hover:text-gray-900'>Add Product</li>
+                                    <li className='cursor-pointer p-1 text-gray-600 hover:text-gray-900 text-xs md:text-sm'>Add Product</li>
                                 </Link>
                                 <Link href="/admin/listProducts">
-                                    <li className='cursor-pointer text-sm p-1 text-gray-600 hover:text-gray-900'>List Product</li>
+                                    <li className='cursor-pointer p-1 text-gray-600 hover:text-gray-900 text-xs md:text-sm'>List Product</li>
                                 </Link>
                             </> : <></>
                     }

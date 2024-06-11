@@ -49,7 +49,7 @@ const AllItem = () => {
 
     return (
         <>
-            <div className='grid grid-cols-4 mb-5 gap-5'>
+            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mb-5 gap-5'>
                 {
                     allProducts
                         ?
@@ -70,9 +70,11 @@ const AllItem = () => {
                 }
             </div>
             <div aria-label="Page navigation example">
-                <ul className="pagination flex mb-6 justify-center items-center">
+                <ul className="pagination flex flex-wrap gap-2 mb-6 justify-center items-center">
                     <li className="page-item">
-                        <a className="page-link px-4 py-2 bg-slate-500 text-white hover:bg-slate-600 rounded-l-lg transition duration-300 ease-in-out" href="#">Previous</a>
+                        <a className="page-link px-4 py-2 bg-slate-500 text-white hover:bg-slate-600 rounded-l-lg transition duration-300 ease-in-out" href="#">
+                            Previous
+                        </a>
                     </li>
                     {
                         pageNumbers && pageNumbers.map((e: number) => {

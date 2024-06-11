@@ -18,7 +18,7 @@ const page = () => {
     } = useContext(ShopeProviderContext);
 
     return (
-        <div className="">
+        <>
             {all_products
                 ?
                 <CardItem
@@ -33,7 +33,7 @@ const page = () => {
                     <Spinner />
                 </div>
             }
-        </div>
+        </>
     )
 }
 

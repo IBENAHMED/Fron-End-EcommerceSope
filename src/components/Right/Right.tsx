@@ -6,7 +6,6 @@ import { useRouter } from 'next/navigation';
 const Right = () => {
 
     let list: string[] = [
-        "Relevance",
         "Trending",
         "Latest arrivals",
         "Price: Low to high",
@@ -35,7 +34,7 @@ const Right = () => {
                             return (
                                 <li
                                     key={i}
-                                    className="cursor-pointer text-sm p-1 text-gray-600 hover:text-gray-900"
+                                    className="cursor-pointer p-1 text-gray-600 hover:text-gray-900 text-xs md:text-sm"
                                     onClick={handleClick}
                                 >
                                     {e}

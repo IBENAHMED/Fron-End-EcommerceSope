@@ -75,18 +75,18 @@ const SignUp = () => {
 
     return (
         <div className="flex items-center justify-center min-h-screen bg-gray-50">
-            <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md transform transition-transform duration-500 hover:scale-105">
+            <div className="bg-white text-center p-4 rounded-lg shadow-lg w-full max-w-md transform transition-transform duration-500 hover:scale-105 sm:p-8 mx-5 sm:text-left">
                 {
                     state === "Sign Up"
-                        ? <h2 className="text-3xl font-bold mb-6 text-center text-gray-900">Sign Up</h2>
-                        : <h2 className="text-3xl font-bold mb-6 text-center text-gray-900">Login</h2>
+                        ? <h4 className="text-xs sm:text-3xl font-bold mb-6 text-center text-gray-900">Sign Up</h4>
+                        : <h4 className="text-xs sm:text-3xl font-bold mb-6 text-center text-gray-900">Login</h4>
                 }
                 <form>
                     {
                         state === "Sign Up"
                             ?
                             <div className="mb-4">
-                                <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-700">
+                                <label htmlFor="name" className="block mb-2 text-xs  font-medium text-gray-700 sm:text-sm">
                                     Username
                                 </label>
                                 <input
@@ -101,7 +101,7 @@ const SignUp = () => {
                             : <></>
                     }
                     <div className="mb-4">
-                        <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-700">
+                        <label htmlFor="email" className="block mb-2 text-xs  font-medium text-gray-700 sm:text-sm">
                             Email Address
                         </label>
                         <input
@@ -114,7 +114,7 @@ const SignUp = () => {
                         />
                     </div>
                     <div className="mb-4">
-                        <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-700">
+                        <label htmlFor="password" className="block mb-2 text-xs  font-medium text-gray-700 sm:text-sm">
                             Password
                         </label>
                         <input
@@ -139,15 +139,12 @@ const SignUp = () => {
                 <div className="text-center mt-4">
                     {
                         state === "Sign Up"
-                            ? <p className="text-center mt-4">Already have an account? <a onClick={() => setState("login")} href="#" className="text-blue-700 hover:underline">Login here</a></p>
-                            : <p className="text-center mt-4">create new account? <a onClick={() => setState("Sign Up")} href="#" className="text-blue-700 hover:underline">Create here</a></p>
+                            ? <p className="text-xs sm:text-sm text-center mt-4">Already have an account? <a onClick={() => setState("login")} href="#" className="text-blue-700 hover:underline">Login here</a></p>
+                            : <p className="text-xs sm:text-sm text-center mt-4">create new account? <a onClick={() => setState("Sign Up")} href="#" className="text-blue-700 hover:underline">Create here</a></p>
                     }
                 </div>
             </div>
         </div>
-
-
-
     )
 }
 
