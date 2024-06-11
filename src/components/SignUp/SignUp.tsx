@@ -51,7 +51,7 @@ const SignUp = () => {
         const passwordRegular = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).{8,}$/ig;
 
         try {
-            if (formData.name.length > 4 && emailRegular.test(formData.email) && passwordRegular.test(formData.password)) {
+            if (formData.name.length >= 3 && emailRegular.test(formData.email) && passwordRegular.test(formData.password)) {
 
                 let data = await axios.post(`${BASE_URL}/signup`, formData)
                 if (data.data.token) {
