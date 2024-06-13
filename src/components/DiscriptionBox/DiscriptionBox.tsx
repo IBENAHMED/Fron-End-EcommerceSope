@@ -6,7 +6,7 @@ const DiscriptionBox = () => {
             <div className="border-b mb-4">
                 <div className="flex flex-wrap">
                     <div
-                        className="text-sm px-2 py-1 cursor-pointer border-b-2 border-blue-500 sm:px-4 sm:py-2 sm:text-lg"
+                        className="text-sm px-2 py-1 text-gray-500 cursor-pointer border-b-2 border-blue-500 sm:px-4 sm:py-2 sm:text-lg"
                     >
                         Description
                     </div>
