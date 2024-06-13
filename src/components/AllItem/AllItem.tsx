@@ -28,7 +28,7 @@ const AllItem = () => {
             }
         }
         fetchData();
-    }, [page, allProducts])
+    }, [page])
 
 
     let pageNumbers: any[] = [];

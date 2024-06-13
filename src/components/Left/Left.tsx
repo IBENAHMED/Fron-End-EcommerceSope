@@ -65,6 +65,7 @@ const Left = () => {
                 <p className='text-xs text-slate-500  mb-5'>Collections</p>
                 {
                     isMobile ? <select onChange={handleClickOption} className='px-3 py-1 rounded text-slate-600'>
+                        <option selected>Choose an option</option>
                         {
                             isMobile ? list.map((e: string, i: number) => {
                                 return (
