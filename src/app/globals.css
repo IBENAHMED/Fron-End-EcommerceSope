@@ -41,12 +41,15 @@ body {
     justify-content: center;
   }
 
+  .app div:nth-child(1) {
+    flex: 1 50%;
+  }
+
+  .app div:nth-child(2) {
+    flex: 1 50%;
+  }
+
   .app div:nth-child(3) {
     order: -1;
   }
 }
-
-/* .gridSystem {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr))
-} */
