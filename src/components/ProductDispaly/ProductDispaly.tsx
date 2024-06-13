@@ -48,10 +48,10 @@ const ProductDispaly = ({ product, idProducts }: any) => {
                     </ul>
                     <button onClick={() => AddCardItems(idProducts)} className="bg-blue-500 text-white text-xs px-2 py-1 rounded hover:bg-blue-600 md:px-4 md:py-2 sm:text-md">ADD to CART</button>
                     <p className="mt-4">
-                        <span className="text-gray-500 font-bold">Category:</span> <span>Women, T-Shirt, Crop Top</span>
+                        <span className="text-gray-500 font-bold">Category:</span> <span className='text-gray-500'>Women, T-Shirt, Crop Top</span>
                     </p>
                     <p className="mt-2">
-                        <span className="text-gray-500 font-bold">Tags:</span> <span>Modern, Latest</span>
+                        <span className="text-gray-500 font-bold">Tags:</span> <span className='text-gray-500'>Modern, Latest</span>
                     </p>
                 </div>
             </div>
