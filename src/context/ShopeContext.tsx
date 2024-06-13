@@ -1,4 +1,5 @@
 "use client"
+import Swale from "@/components/Swal/Swal";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { createContext, useEffect, useState } from "react";
@@ -12,7 +13,9 @@ const ShopeContext = ({ children }: any) => {
 
     let [all_products, setAll_Products]: any = useState();
     let [cardItems, setCardItems]: any = useState({});
-    let route = useRouter();
+    let router = useRouter();
+
+    // **************************************************************************** Start async function 
 
     let getDefaultCarts = async () => {
         if (cookies.token) {
@@ -26,28 +29,48 @@ const ShopeContext = ({ children }: any) => {
                 setCardItems(response.data.cartData);
 
             } catch (error) {
-                route.push("/error");
+                router.push("/error");
             }
+        };
+    };
+
+    let fetchAllproducts = async () => {
+        try {
+
+            let res = await axios.get(`${BASE_URL}/getallproducts`);
+            setAll_Products(res.data.allPrudcts);
+
+        } catch (err) {
+            router.push("/error");
+        };
+    };
+
+    let fetchProductswithpagination = async () => {
+        try {
+
+            let response = await axios.post(`${BASE_URL}/getallproductswithpagination/${page}`);
+            setAllProductsPagination(response.data.productPage);
+            setNumberpage(response.data.numberPages);
+
+        } catch (err) {
+            router.push("/error")
         }
     }
+
+    // **************************************************************************** End async function
+    // **************************************************************************** Start User
 
     useEffect(() => {
         getDefaultCarts();
     }, []);
 
     useEffect(() => {
-        let fetchData = async () => {
-            try {
-                let res = await axios.get(`${BASE_URL}/getallproducts`);
-                setAll_Products(res.data.allPrudcts);
-            } catch (err) {
-                route.push("/error");
-            }
-        };
-        fetchData();
-    }, [cookies.token])
 
-    // function addFunction(prev: any, item: number) {return ({...prev, [item]: prev[item] + 1})}
+        fetchAllproducts();
+        const intervalId = setInterval(fetchAllproducts, 30000);
+        return () => clearInterval(intervalId);
+
+    }, [cookies.token]);
 
     let AddCardItems = async (id: any) => {
         if (cookies.token) {
@@ -61,13 +84,11 @@ const ShopeContext = ({ children }: any) => {
                     id
                 }),
             }).then((res) => {
-                if (res.status !== 200) {
-                    route.push("/error")
-                }
+                res.status == 200 ? Swale("Product Added ✅") : router.push("/error")
             })
             getDefaultCarts();
         } else {
-            route.push("/SignUp")
+            router.push("/SignUp")
         }
     };
 
@@ -86,7 +107,7 @@ const ShopeContext = ({ children }: any) => {
                     }),
                 }).then((res) => {
                     if (res.status !== 200) {
-                        route.push("/error")
+                        router.push("/error")
                     }
                 })
                 getDefaultCarts();
@@ -102,6 +123,7 @@ const ShopeContext = ({ children }: any) => {
                 totle = totle + item.new_price * cardItems[item._id];
             };
         });
+
         return totle;
     };
 
@@ -121,7 +143,45 @@ const ShopeContext = ({ children }: any) => {
         return total;
     }
 
+    // **************************************************************************** End User
+    // **************************************************************************** Start Pgae ListProducts
+
+    let [allProductsPagination, setAllProductsPagination]: any = useState([]);
+    let [numberpage, setNumberpage]: any = useState(undefined);
+    let [page, setPage]: any = useState(1);
+
+    useEffect(() => {
+        fetchProductswithpagination();
+    }, [])
+
+    useEffect(() => {
+
+        fetchProductswithpagination();
+        const intervalId = setInterval(fetchProductswithpagination, 6000);
+        return () => clearInterval(intervalId);
+
+    }, [page]);
+
+
+    let pageNumbers: any[] = [];
+    if (numberpage !== undefined) {
+        for (let index = 1; index <= numberpage; index++) {
+            pageNumbers.push(index)
+        };
+    };
+
+    let handlingPagination = (e: React.MouseEvent<HTMLLIElement>) => {
+
+        let name = e.target as HTMLLIElement;
+        let valueName = name.textContent;
+        setPage(valueName);
+
+    }
+
+    // **************************************************************************** End Pgae ListProducts
+
     let contextValue = {
+        allProductsPagination, pageNumbers, handlingPagination,
         cookies, setCookie, removeCookie,
         all_products,
         cardItems,

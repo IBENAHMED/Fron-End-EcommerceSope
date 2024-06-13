@@ -1,59 +1,21 @@
 "use client"
 
-import axios from 'axios';
-import { useRouter } from 'next/navigation';
-import React, { useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import Item from '../Item/Item';
 import Spinner from '../Spinner/Spinner';
+import { ShopeProviderContext } from '@/context/ShopeContext';
 
 const AllItem = () => {
 
-    let [allProducts, setAllProducts]: any = useState([]);
-    let [numberpage, setNumberpage]: any = useState(undefined);
-    let [page, setPage]: any = useState(1);
-    const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
-
-    let router = useRouter();
-
-    useEffect(() => {
-        let fetchData = async () => {
-            try {
-
-                let response = await axios.post(`${BASE_URL}/getallproductswithpagination/${page}`);
-                setAllProducts(response.data.productPage);
-                setNumberpage(response.data.numberPages);
-
-            } catch (err) {
-                router.push("/error")
-            }
-        }
-        fetchData();
-    }, [page])
-
-
-    let pageNumbers: any[] = [];
-    if (numberpage !== undefined) {
-        for (let index = 1; index <= numberpage; index++) {
-            pageNumbers.push(index)
-        };
-    };
-
-
-    let handlingPagination = (e: React.MouseEvent<HTMLLIElement>) => {
-
-        let name = e.target as HTMLLIElement;
-        let valueName = name.textContent;
-        setPage(valueName);
-
-    }
+    let { allProductsPagination, pageNumbers, handlingPagination } = useContext(ShopeProviderContext);
 
     return (
         <>
             <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mb-5 gap-5'>
                 {
-                    allProducts
+                    allProductsPagination
                         ?
-                        allProducts.map((item: any, i: any) => {
+                        allProductsPagination.map((item: any, i: any) => {
                             return <Item
                                 key={i}
                                 id={item._id}
@@ -93,8 +55,6 @@ const AllItem = () => {
                     </li>
                 </ul>
             </div>
-
-
         </>
     )
 }

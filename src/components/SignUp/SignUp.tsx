@@ -37,7 +37,7 @@ const SignUp = () => {
 
                 window.location.replace("/")
             } else {
-                Swale("error", `${data.data.err}`)
+                Swale(`${data.data.err} ❌`)
             };
         } catch (err) {
             router.push("/error");
@@ -63,10 +63,10 @@ const SignUp = () => {
                     window.location.replace("/")
 
                 } else {
-                    Swale("error", "token not disponible")
+                    Swale("token not disponible ❌")
                 };
             } else {
-                Swale("error", "email and password aren't strong")
+                Swale("email and password aren't strong ❌")
             }
         } catch (err) {
             router.push("/error");
