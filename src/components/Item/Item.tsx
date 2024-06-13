@@ -1,6 +1,7 @@
 import { StaticImageData } from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+import './Item.css'
 
 // Define the props interface
 interface ItemProps {
@@ -14,7 +15,7 @@ interface ItemProps {
 // Use the interface in the component
 const Item: React.FC<ItemProps> = ({ id, name, image, new_price, old_price }) => {
     return (
-        <div className="mb-5">
+        <div className="item mb-5">
             <div className="bg-white shadow-lg rounded-lg p-2 transition-transform duration-300 hover:scale-105 animate-slideIn md:p-6">
                 <Link href={`/Product/${id}`} className="block overflow-hidden rounded-lg shadow-lg transition-shadow duration-300 hover:shadow-2xl">
                     <img src={image} alt={name} className="w-full h-auto object-cover transition-transform duration-300 hover:scale-110" />

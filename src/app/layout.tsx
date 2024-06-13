@@ -29,14 +29,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
 
-
   return (
     <html lang="en">
       <body className={poppins.className}>
         <div className="bg-slate-50">
           <ShopeContext>
             <Navbar />
-            <div className="app ">
+            <div className="app">
               <div>
                 <Left />
               </div>

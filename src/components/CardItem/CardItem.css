@@ -1,3 +1,16 @@
 .cardItem {
     height: calc(100vh - 65px);
 }
+
+.projects {
+    /* display: grid; */
+    /* grid-template-columns: 1fr; */
+}
+
+.projects .responsive-table {
+    overflow-x: auto;
+}
+
+.projects .responsive-table table {
+    min-width: 1000px;
+}
