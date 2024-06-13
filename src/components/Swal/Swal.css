@@ -1,12 +1,12 @@
 .custom-popup-class {
     background: rgba(255, 255, 255, 0.9);
-    width: 200px;
-    padding: 20px;
+    width: 300px;
+    padding: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
 }
 
 .custom-title-class {
-    font-size: 18px;
+    font-size: 17px;
     color: #333;
 }

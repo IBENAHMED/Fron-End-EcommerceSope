@@ -52,8 +52,8 @@ const AddProductsItem = () => {
 
             }).then((res) => {
                 res.status == 200 ?
-                    Swale("success", "Product Added") :
-                    res.status == 403 ? Swale("error", "Just admin can add products") :
+                    Swale("Product Added ✅") :
+                    res.status == 403 ? Swale("Just admin can add products ❌") :
                         route.push("/error");
 
             }).catch((err) => {

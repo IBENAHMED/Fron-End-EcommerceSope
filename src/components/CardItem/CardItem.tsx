@@ -25,7 +25,7 @@ const CardItem = ({
             body: JSON.stringify(body),
         }).then((res) => {
             if (res.status == 401) {
-                Swale("error", "the user not authorized")
+                Swale("the user not authorized ❌")
             }
         });
     }
@@ -62,7 +62,7 @@ const CardItem = ({
                                                 <td className="px-4 py-2 text-gray-800">{e.name}</td>
                                                 <td className="px-4 py-2 text-right text-gray-700">${e.new_price}</td>
                                                 <td className="px-4 py-2 text-center">
-                                                    <p className="w-12 text-center border border-gray-300 rounded-md bg-gray-100">{cardItems[e._id]}</p>
+                                                    <p className="w-12 text-center border text-black border-gray-300 rounded-md bg-gray-100">{cardItems[e._id]}</p>
                                                 </td>
                                                 <td className="px-4 py-2 text-right text-gray-800">${e.new_price * cardItems[e._id]}</td>
                                                 <td className="px-4 py-2 text-center text-red-500 cursor-pointer hover:text-red-700 transition-colors" onClick={() => RemoveCardItems(e._id)}>
