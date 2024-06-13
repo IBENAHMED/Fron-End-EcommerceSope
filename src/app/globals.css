@@ -46,7 +46,7 @@ body {
   }
 
   .app div:nth-child(2) {
-    flex: 1 50%;
+    flex: 1 100%;
   }
 
   .app div:nth-child(3) {
