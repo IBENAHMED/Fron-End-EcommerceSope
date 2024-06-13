@@ -18,7 +18,7 @@ const DiscriptionBox = () => {
                 </div>
             </div>
             <div className="p-4 ">
-                <p className='text-xs sm:text-md'>
+                <p className='text-xs text-gray-500 sm:text-md'>
                     An e-commerce website is an online platform that facilitates
                     the buying and selling of products or services over the internet.
                     It serves as a virtual marketplace where businesses and individuals
