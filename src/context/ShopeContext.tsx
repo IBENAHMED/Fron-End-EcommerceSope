@@ -72,7 +72,7 @@ const ShopeContext = ({ children }: any) => {
 
     }, [cookies.token]);
 
-    let AddCardItems = async (id: any) => {
+    let AddCardItems = async (id: any, size: any) => {
         if (cookies.token) {
             await fetch(`${BASE_URL}/userAddPoduct`, {
                 method: 'POST',
@@ -81,10 +81,16 @@ const ShopeContext = ({ children }: any) => {
                     'token-auth': cookies.token,
                 },
                 body: JSON.stringify({
-                    id
+                    id,
+                    size
                 }),
             }).then((res) => {
-                res.status == 200 ? Swale("Product Added ✅") : router.push("/error")
+                res.status == 200 ?
+                    Swale("Product Added ✅") :
+                    res.status == 403 ?
+                        Swale("Size product is not available in the stock ❌") :
+                        router.push("/error")
+
             })
             getDefaultCarts();
         } else {
