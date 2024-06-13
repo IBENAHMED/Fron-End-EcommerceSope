@@ -1,5 +1,5 @@
 "use client"
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import upload_area from '../../Assets/upload_area.svg'
 import axios from 'axios';
 import './AddProductsItem.css';
@@ -18,6 +18,7 @@ const AddProductsItem = () => {
         category: "women",
         new_price: "",
         old_price: "",
+        size: []
     });
 
     const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
@@ -25,6 +26,7 @@ const AddProductsItem = () => {
 
     let addProducts = async (e: any) => {
         e.preventDefault();
+
         let responsData: any;
 
         // upload image
@@ -62,6 +64,33 @@ const AddProductsItem = () => {
         };
     };
 
+    const [selectedSizes, setSelectedSizes]: any = useState([]);
+
+    const handleCheckboxChange = (event: any) => {
+        const { value, checked } = event.target;
+
+        setSelectedSizes((prevState: any) =>
+            checked
+                ? [...prevState, value] // Add value if checked
+                : prevState.filter((size: any) => size !== value) // Remove value if unchecked
+        );
+    };
+
+    const sizes = [
+        { id: 'S', label: 'Small', value: 'Size S' },
+        { id: 'M', label: 'Medium', value: 'Size M' },
+        { id: 'L', label: 'Large', value: 'Size L' },
+        { id: 'XL', label: 'X-Large', value: 'Size XL' },
+        { id: 'XXL', label: 'XX-Large', value: 'Size XXL' }
+    ];
+
+
+    useEffect(() => {
+        setProduct({ ...product, "size": selectedSizes });
+    }, [selectedSizes])
+
+    console.log(product);
+
     return (
         <div className="AddProductsItem bg-slate-50 border border-slate-300 rounded">
             <div className="container mx-auto p-10">
@@ -93,6 +122,26 @@ const AddProductsItem = () => {
                             <option>kid</option>
                             <option>Accessories</option>
                         </select>
+                    </div>
+
+                    <div className="mb-4">
+                        <label className="block text-sm font-medium text-gray-700">Product Categories</label>
+                        <ul className="list-group mt-2">
+                            {sizes.map(size => (
+                                <li key={size.id} className="list-group-item flex items-center">
+                                    <input
+                                        type="checkbox"
+                                        id={size.id}
+                                        name={size.id}
+                                        value={size.id}
+                                        checked={selectedSizes[size.id]}
+                                        onChange={handleCheckboxChange}
+                                        className="form-checkbox h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2"
+                                    />
+                                    <label htmlFor={size.id} className="text-sm text-gray-900">{size.label}</label>
+                                </li>
+                            ))}
+                        </ul>
                     </div>
 
                     {/* <!-- Product Image Upload --> */}

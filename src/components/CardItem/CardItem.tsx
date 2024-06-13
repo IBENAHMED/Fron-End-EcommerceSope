@@ -115,30 +115,6 @@ const CardItem = ({
                 </div>
             </div>
         </div>
-        // <div className="projects">
-        //     <div className="grid">
-        //         <h2>Projects</h2>
-        //         <div className="responsive-table">
-        //             <table className="">
-        //                 <thead>
-        //                     <tr>
-        //                         <th scope="col">Name</th>
-        //                         <th scope="col">Finish Date</th>
-        //                         <th scope="col">Client </th>
-        //                         <th scope="col">Price</th>
-        //                         <th scope="col">Team</th>
-        //                         <th scope="col">Status</th>
-        //                     </tr>
-        //                 </thead>
-        //                 <tbody className="bg-white">
-        //                     <tr>
-
-        //                     </tr>
-        //                 </tbody>
-        //             </table>
-        //         </div>
-        //     </div>
-        // </div>
     );
 };
 

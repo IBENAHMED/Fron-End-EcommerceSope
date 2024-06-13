@@ -1,7 +1,5 @@
 "use client"
 import React, { useContext, useEffect, useState } from 'react';
-import logo from '../../Assets/logo.png';
-import cart_icon from '../../Assets/cart_icon.png';
 import profile from '../../Assets/profile.jpeg';
 import Link from 'next/link';
 import { ShopeProviderContext } from '@/context/ShopeContext';

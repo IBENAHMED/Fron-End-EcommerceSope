@@ -1,4 +1,4 @@
-// "use client"
+"use client"
 import { useContext, useEffect, useState } from 'react'
 import './ProductDispaly.css'
 import star_icon from '../../Assets/star_icon.png'
@@ -8,6 +8,15 @@ import { ShopeProviderContext } from '@/context/ShopeContext'
 const ProductDispaly = ({ product, idProducts }: any) => {
 
     let { AddCardItems } = useContext(ShopeProviderContext);
+    let [size, setSize] = useState("XL");
+
+    let handlingPagination = (e: React.MouseEvent<HTMLLIElement>) => {
+
+        let name: any = e.target as HTMLLIElement;
+        let valueName: any = name.textContent;
+        setSize(valueName);
+
+    }
 
     return (
         <div className="py-6">
@@ -40,13 +49,16 @@ const ProductDispaly = ({ product, idProducts }: any) => {
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel ligula ut nunc feugiat aliquet. Nullam ac lacus sed dolor suscipit pretium. Cras ut facilisis arcu, in malesuada lorem. Nam eu urna a est convallis fermentum. Sed in justo lectus.
                     </div>
                     <ul className="flex flex-wrap space-x-2 mb-4">
-                        <li className="border text-gray-500 p-1 sm:px-2 py-1">S</li>
-                        <li className="border text-gray-500 p-1 sm:px-2 py-1">M</li>
-                        <li className="border text-gray-500 p-1 sm:px-2 py-1">L</li>
-                        <li className="border text-gray-500 p-1 sm:px-2 py-1">XL</li>
-                        <li className="border text-gray-500 p-1 sm:px-2 py-1">XXL</li>
+                        {['S', 'M', 'L', 'XL', 'XXL'].map((e) => {
+                            return (
+                                <li onClick={handlingPagination} className={`border  cursor-pointer text-gray-500 p-1 sm:px-2 py-1
+                                {${e !== size ? "" : "text-red-300 bg-slate-800"}`} >
+                                    {e}
+                                </li>
+                            )
+                        })}
                     </ul>
-                    <button onClick={() => AddCardItems(idProducts)} className="bg-blue-500 text-white text-xs px-2 py-1 rounded hover:bg-blue-600 md:px-4 md:py-2 sm:text-md">ADD to CART</button>
+                    <button onClick={() => AddCardItems(idProducts, size)} className="bg-blue-500 text-white text-xs px-2 py-1 rounded hover:bg-blue-600 md:px-4 md:py-2 sm:text-md">ADD to CART</button>
                     <p className="mt-4">
                         <span className="text-gray-500 font-bold">Category:</span> <span className='text-gray-500'>Women, T-Shirt, Crop Top</span>
                     </p>
