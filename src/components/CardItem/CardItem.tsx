@@ -55,10 +55,6 @@ const CardItem = ({
                                         let updateProduct = { ...e, Qnt: cardItems[e._id] };
                                         products = [...products, updateProduct]
 
-                                        // Size
-                                        let updateProductV2 = { ...e, Qnt: cardItems[e._id] };
-                                        products = [...products, updateProduct]
-
                                         return (
                                             <tr key={e._id} className="text-xs sm:text-sm border-b border-gray-200 bg-slate-50 hover:bg-gray-50 transition-colors">
                                                 <td className="px-4 py-2">
