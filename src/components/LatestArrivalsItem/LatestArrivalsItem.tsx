@@ -12,7 +12,7 @@ const LatestArrivalsItem = () => {
 
     let { cookies } = useContext(ShopeProviderContext)
 
-    let [newCollection, setNewCollection] = useState([]);
+    let [newCollection, setNewCollection]: any = useState();
     let route = useRouter()
 
     useEffect(() => {
@@ -32,7 +32,8 @@ const LatestArrivalsItem = () => {
             <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mb-5 gap-5'>
                 {
                     newCollection
-                        ? newCollection.map((item: any, i: any) => {
+                        ?
+                        newCollection.map((item: any, i: any) => {
                             return <Item
                                 key={i}
                                 id={item._id}
