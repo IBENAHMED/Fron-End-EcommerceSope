@@ -37,7 +37,11 @@ const Right = () => {
             route.push("/trending") :
             NameLIElement == "Latest arrivals" ?
                 route.push("/latestArrivals") :
-                route.push("/");
+                NameLIElement == "Price: Low to high" ?
+                    route.push("/lowtohigh") :
+                    NameLIElement == "Price: High to low" ?
+                        route.push("/hightolow") :
+                        route.push("/");
     }
 
     let handleClickOption = (e: any) => {
