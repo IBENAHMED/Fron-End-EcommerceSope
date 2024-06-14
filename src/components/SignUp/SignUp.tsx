@@ -74,7 +74,7 @@ const SignUp = () => {
     };
 
     return (
-        <div className="flex items-center justify-center bg-gray-50">
+        <div className="flex items-center mb-5 justify-center bg-gray-50">
             <div className="bg-white text-center p-4 rounded-lg shadow-lg w-full max-w-md transform transition-transform duration-500 hover:scale-105 sm:p-8 mx-5 sm:text-left">
                 {
                     state === "Sign Up"
