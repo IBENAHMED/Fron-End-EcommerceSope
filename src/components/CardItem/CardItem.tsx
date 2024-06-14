@@ -51,7 +51,12 @@ const CardItem = ({
                                 all_products.map((e: any) => {
                                     if (cardItems[e._id] > 0) {
 
+                                        // Qnt
                                         let updateProduct = { ...e, Qnt: cardItems[e._id] };
+                                        products = [...products, updateProduct]
+
+                                        // Size
+                                        let updateProductV2 = { ...e, Qnt: cardItems[e._id] };
                                         products = [...products, updateProduct]
 
                                         return (
