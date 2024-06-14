@@ -152,7 +152,7 @@ const ShopeContext = ({ children }: any) => {
     // **************************************************************************** End User
     // **************************************************************************** Start Pgae ListProducts
 
-    let [allProductsPagination, setAllProductsPagination]: any = useState([]);
+    let [allProductsPagination, setAllProductsPagination]: any = useState();
     let [numberpage, setNumberpage]: any = useState(undefined);
     let [page, setPage]: any = useState(1);
 
