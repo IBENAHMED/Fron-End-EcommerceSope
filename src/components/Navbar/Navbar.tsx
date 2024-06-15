@@ -1,6 +1,6 @@
 "use client"
 import React, { useContext, useEffect, useState } from 'react';
-import profile from '../../Assets/profile.jpeg';
+import profile from '../../Assets/logo.png';
 import Link from 'next/link';
 import { ShopeProviderContext } from '@/context/ShopeContext';
 import { useRouter } from 'next/navigation';
