@@ -1,22 +1,22 @@
 "use client"
 
-import "./ProductDispaly.css";
-import {useContext, useState} from "react";
-import {ShopeProviderContext} from "@/context/ShopeContext";
+import "./ProductDispaly.css"
+import {useContext, useState} from "react"
+import {ShopeProviderContext} from "@/context/ShopeContext"
 
-import star_icon from "../../Assets/star_icon.png";
-import star_dull_icon from "../../Assets/star_dull_icon.png";
+import star_icon from "../../Assets/star_icon.png"
+import star_dull_icon from "../../Assets/star_dull_icon.png"
 
 const ProductDispaly = ({product, idProducts}: any) => {
-  let {AddCardItems} = useContext(ShopeProviderContext);
+  let {AddCardItems} = useContext(ShopeProviderContext)
 
-  let [size, setSize] = useState("XL");
+  let [size, setSize] = useState("XL")
 
   const handlingPagination = (e: React.MouseEvent<HTMLLIElement>) => {
-    let name: any = e.target as HTMLLIElement;
-    let valueName: any = name.textContent;
-    setSize(valueName);
-  };
+    let name: any = e.target as HTMLLIElement
+    let valueName: any = name.textContent
+    setSize(valueName)
+  }
 
   return (
     <div className='py-6'>
@@ -52,9 +52,9 @@ const ProductDispaly = ({product, idProducts}: any) => {
           <ul className='flex flex-wrap space-x-2 mb-4'>
             {["S", "M", "L", "XL", "XXL"].map((e) => {
               return (
-                <li
-                  onClick={handlingPagination}
-                  className={`border  cursor-pointer text-gray-500 p-1 sm:px-2 py-1{${e !== size ? "" : "text-red-300 bg-slate-800"}`}>{e}</li>
+                <li onClick={handlingPagination} className={`border  cursor-pointer text-gray-500 p-1 sm:px-2 py-1{${e !== size ? "" : "text-red-300 bg-slate-800"}`}>
+                  {e}
+                </li>
               )
             })}
           </ul>
@@ -70,7 +70,7 @@ const ProductDispaly = ({product, idProducts}: any) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ProductDispaly;
+export default ProductDispaly

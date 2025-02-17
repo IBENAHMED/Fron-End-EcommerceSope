@@ -7,7 +7,7 @@ import Item from "../Item/Item"
 import Spinner from "../Spinner/Spinner"
 
 export default function AllItem() {
-  let {allProductsPagination, pageNumbers, handlingPagination} = useContext(ShopeProviderContext);
+  let {allProductsPagination, pageNumbers, handlingPagination} = useContext(ShopeProviderContext)
 
   return (
     <>
@@ -45,5 +45,5 @@ export default function AllItem() {
         </ul>
       </div>
     </>
-  );
-};
+  )
+}

@@ -10,31 +10,31 @@ import {ShopeProviderContext} from "@/context/ShopeContext"
 import profile from "../../Assets/logo.png"
 
 const Navbar = () => {
-  let router = useRouter();
+  let router = useRouter()
 
-  let {getTotalCartItemAdded, cookies, removeCookie} = useContext(ShopeProviderContext);
+  let {getTotalCartItemAdded, cookies, removeCookie} = useContext(ShopeProviderContext)
 
-  const [role, setRole] = useState<string | null>(null);
-  const [isMobileNavVisible, setIsMobileNavVisible] = useState(false);
+  const [role, setRole] = useState<string | null>(null)
+  const [isMobileNavVisible, setIsMobileNavVisible] = useState(false)
 
   useEffect(() => {
     if (typeof window !== "undefined") {
       const role = window.localStorage.getItem("role")
       setRole(role)
     }
-  }, []);
+  }, [])
 
   const toggleMobileNav = () => {
     setIsMobileNavVisible(!isMobileNavVisible)
-  };
+  }
 
   const handleLogout = () => {
     removeCookie("token")
     if (typeof window !== "undefined") {
       window.localStorage.removeItem("role")
       window.location.replace("/SignUp")
-    };
-  };
+    }
+  }
 
   return (
     <header className='navbar z-10 bg-slate-50 p-4'>
@@ -124,7 +124,7 @@ const Navbar = () => {
         </nav>
       )}
     </header>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar

@@ -1,25 +1,25 @@
 "use client"
 
-import "./RelatedProducts.css";
+import "./RelatedProducts.css"
 
-import axios from "axios";
-import {useEffect, useState} from "react";
+import axios from "axios"
+import {useEffect, useState} from "react"
 
-import Item from "../Item/Item";
+import Item from "../Item/Item"
 
 const RelatedProducts = ({idProducts}: any) => {
-  let [data, setData]: any = useState([]);
+  let [data, setData]: any = useState([])
 
-  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
 
   useEffect(() => {
     const getrelatiedproducts = async () => {
       let data = await axios.post(`${BASE_URL}/getrelatiedproducts`, {_id: idProducts})
       setData(data.data.fourProducts)
     }
-    
-    getrelatiedproducts();
-  }, []);
+
+    getrelatiedproducts()
+  }, [])
 
   return (
     <div className='px-5 container mx-auto text-left mt-20'>
@@ -31,7 +31,7 @@ const RelatedProducts = ({idProducts}: any) => {
           })}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default RelatedProducts;
+export default RelatedProducts

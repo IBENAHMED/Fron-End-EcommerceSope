@@ -1,7 +1,5 @@
-import AllItem from "@/components/AllItem/AllItem";
+import AllItem from "@/components/AllItem/AllItem"
 
-export default function page () {
-  return (
-    <AllItem />
-  );
-};
+export default function page() {
+  return <AllItem />
+}

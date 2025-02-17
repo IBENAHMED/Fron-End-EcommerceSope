@@ -4,24 +4,24 @@ import "./Left.css"
 import {useRouter} from "next/navigation"
 
 const Left = () => {
-  let list: string[] = ["All", "Women", "Men", "Kids", "Bags", "Kids", "Stickers"];
+  let list: string[] = ["All", "Women", "Men", "Kids", "Bags", "Kids", "Stickers"]
 
-  const route = useRouter();
-  const [role, setRole] = useState<string | null>(null);
-  let [isMobile, setIsMobile] = useState(false);
+  const route = useRouter()
+  const [role, setRole] = useState<string | null>(null)
+  let [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
     if (typeof window !== "undefined") {
       const role = window.localStorage.getItem("role")
       setRole(role)
     }
-  }, []);
+  }, [])
 
   useEffect(() => {
     const handleResize = () => (window.innerWidth <= 767 ? setIsMobile(true) : setIsMobile(false))
     handleResize()
     window.addEventListener("resize", handleResize)
-  }, []);
+  }, [])
 
   const handlingNavigation = (NameLIElement: any) => {
     return NameLIElement == "Women"
@@ -98,7 +98,7 @@ const Left = () => {
                   ListProduct
                 </li>
               </div>
-            ) : ( 
+            ) : (
               <></>
             )}
           </ul>
@@ -107,7 +107,7 @@ const Left = () => {
         )}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Left;
+export default Left
