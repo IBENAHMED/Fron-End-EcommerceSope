@@ -1,10 +1,11 @@
 "use client"
-import "./RelatedProducts.css"
 
-import axios from "axios"
-import {useEffect, useState} from "react"
+import "./RelatedProducts.css";
 
-import Item from "../Item/Item"
+import axios from "axios";
+import {useEffect, useState} from "react";
+
+import Item from "../Item/Item";
 
 const RelatedProducts = ({idProducts}: any) => {
   let [data, setData]: any = useState([]);
@@ -30,7 +31,7 @@ const RelatedProducts = ({idProducts}: any) => {
           })}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default RelatedProducts
+export default RelatedProducts;

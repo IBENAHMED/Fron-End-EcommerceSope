@@ -1,7 +1,7 @@
 "use client";
 
-import ListProductsItem from "@/components/ListProductsItem/ListProductsItem";
 import withAuthandRole from "@/util/PrivateRouterAdmin";
+import ListProductsItem from "@/components/ListProductsItem/ListProductsItem";
 
 const page = () => {
   return (

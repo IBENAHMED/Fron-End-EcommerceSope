@@ -90,15 +90,15 @@ const Left = () => {
                 })
               : null}
             {!isMobile && role == "ADMIN" ? (
-              <>
+              <div>
                 <li onClick={handleClick} className='cursor-pointer p-1 text-gray-600 hover:text-gray-900 text-xs md:text-sm'>
                   AddProduct
                 </li>
                 <li onClick={handleClick} className='cursor-pointer p-1 text-gray-600 hover:text-gray-900 text-xs md:text-sm'>
                   ListProduct
                 </li>
-              </>
-            ) : (
+              </div>
+            ) : ( 
               <></>
             )}
           </ul>

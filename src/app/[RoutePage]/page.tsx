@@ -10,7 +10,7 @@ import banner_mens from '../../Assets/banner_mens.png';
 import banner_kids from '../../Assets/banner_kids.png';
 import banner_women from '../../Assets/banner_women.png';
 
-const page = (props: any) => {
+export default function page (props: any) {
     let title, img;
     let { all_products }: any = useContext(ShopeProviderContext);
 
@@ -45,9 +45,7 @@ const page = (props: any) => {
             <div className='col-span-12'>
               <Spinner />
             </div>
-          )}
-        </div>
+          )};
+      </div>
     );
 };
-
-export default page;

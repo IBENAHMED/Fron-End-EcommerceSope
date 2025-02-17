@@ -2,10 +2,8 @@ import React from 'react';
 
 import LowtohighItem from '@/components/LowtohighItem/LowtohighItem';
 
-export default function page ()  {
+export default function page () {
   return (
-    <div>
-      <LowtohighItem />
-    </div>
+    <LowtohighItem />
   );
 };

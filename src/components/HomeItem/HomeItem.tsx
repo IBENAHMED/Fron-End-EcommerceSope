@@ -36,7 +36,7 @@ const HomeItem = () => {
         </section>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default HomeItem
+export default HomeItem;

@@ -4,6 +4,6 @@ import ErrorItem from '@/components/ErrorItem/ErrorItem';
 
 export default function page () {
   return (
-    <div><ErrorItem /></div>
+    <ErrorItem />
   );
 };

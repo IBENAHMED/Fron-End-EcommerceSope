@@ -8,54 +8,45 @@ import {ShopeProviderContext} from "@/context/ShopeContext";
 import Swale from "../Swal/Swal";
 
 const SignUp = () => {
-  const router = useRouter();
-
-  let [state, setState] = useState("login")
-  let [stateToke, setStateToke] = useState(true)
-  let [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
-  })
-
-  let {setCookie} = useContext(ShopeProviderContext);
-
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
-  let login = async (e: any) => {
+  const router = useRouter();
+  const {setCookie} = useContext(ShopeProviderContext);
+
+  const [state, setState] = useState("login");
+  const [stateToke, setStateToke] = useState(true);
+  const [formData, setFormData] = useState({name: "", email: "", password: ""});
+
+  const login = async (e: any) => {
     e.preventDefault()
     try {
       let data = await axios.post(`${BASE_URL}/login`, formData)
       if (data.data.token) {
         setStateToke(false)
-
         setCookie("token", data.data.token)
-
         if (typeof window !== "undefined") {
           localStorage.setItem("role", data.data.role)
         }
-
         window.location.replace("/")
       } else {
         Swale(`${data.data.err} ❌`)
       }
     } catch (err) {
       router.push("/error")
-    }
-  }
+    };
+  };
 
-  let SignUpUser = async (e: any) => {
+  const SignUpUser = async (e: any) => {
     e.preventDefault()
 
-    let emailRegular = /^\S+@\S+\.com/gi
-    const passwordRegular = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).{8,}$/gi
+    let emailRegular = /^\S+@\S+\.com/gi;
+    const passwordRegular = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).{8,}$/gi;
 
     try {
       if (formData.name.length >= 3 && emailRegular.test(formData.email) && passwordRegular.test(formData.password)) {
         let data = await axios.post(`${BASE_URL}/signup`, formData)
         if (data.data.token) {
           setStateToke(false)
-
           setCookie("token", data.data.token)
           localStorage.setItem("role", data.data.role)
           window.location.replace("/")
@@ -67,8 +58,8 @@ const SignUp = () => {
       }
     } catch (err) {
       router.push("/error")
-    }
-  }
+    };
+  };
 
   return (
     <div className='flex items-center mb-5 justify-center bg-gray-50'>
@@ -143,7 +134,7 @@ const SignUp = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default SignUp
