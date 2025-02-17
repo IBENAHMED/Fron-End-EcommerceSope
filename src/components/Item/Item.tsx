@@ -1,9 +1,7 @@
-import { StaticImageData } from 'next/image';
-import Link from 'next/link';
-import React from 'react';
 import './Item.css'
 
-// Define the props interface
+import React from 'react';
+import Link from 'next/link';
 interface ItemProps {
     id: number;
     name: string;
@@ -12,7 +10,6 @@ interface ItemProps {
     old_price: number;
 }
 
-// Use the interface in the component
 const Item: React.FC<ItemProps> = ({ id, name, image, new_price, old_price }) => {
     return (
         <div className="item mb-5">

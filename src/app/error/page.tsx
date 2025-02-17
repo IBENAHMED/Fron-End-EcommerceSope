@@ -1,12 +1,9 @@
-import ErrorItem from '@/components/ErrorItem/ErrorItem'
-import React from 'react'
+import React from 'react';
 
-const page = () => {
-    return (
-        <div>
-            <ErrorItem />
-        </div>
-    )
-}
+import ErrorItem from '@/components/ErrorItem/ErrorItem';
 
-export default page
+export default function page () {
+  return (
+    <div><ErrorItem /></div>
+  );
+};

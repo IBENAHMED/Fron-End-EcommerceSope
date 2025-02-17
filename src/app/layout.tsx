@@ -1,13 +1,16 @@
 
-import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
-import { Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar/Navbar";
-import Footer from "@/components/Footer/Footer";
+
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import { Poppins } from "next/font/google";
+
 import ShopeContext from "@/context/ShopeContext";
+
 import Left from "@/components/Left/Left";
 import Right from "@/components/Right/Right";
+import Navbar from "@/components/Navbar/Navbar";
+import Footer from "@/components/Footer/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -37,15 +40,9 @@ export default function RootLayout({
           <ShopeContext>
             <Navbar />
             <div className="app">
-              <div>
-                <Left />
-              </div>
-              <div>
-                {children}
-              </div>
-              <div>
-                <Right />
-              </div>
+              <div><Left /></div>
+              <div>{children}</div>
+              <div><Right /></div>
             </div>
             <Footer />
           </ShopeContext>
