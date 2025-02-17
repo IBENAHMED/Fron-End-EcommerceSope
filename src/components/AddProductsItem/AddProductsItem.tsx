@@ -21,15 +21,15 @@ const AddProductsItem = () => {
   ]
 
   const route = useRouter()
-  const {cookies} = useContext(ShopeProviderContext)
+  const {cookies} = useContext(ShopeProviderContext);
 
-  const [selectedSizes, setSelectedSizes]: any = useState([])
-  const [img, setImage]: boolean | any = useState(false)
-  const [product, setProduct]: any = useState({name: "", img: "", category: "women", new_price: "", old_price: "", size: []})
+  const [img, setImage]: boolean | any = useState(false);
+  const [selectedSizes, setSelectedSizes]: any = useState([]);
+  const [product, setProduct]: any = useState({name: "", img: "", category: "women", new_price: "", old_price: "", size: []});
 
   useEffect(() => {
     setProduct({...product, size: selectedSizes})
-  }, [selectedSizes])
+  }, [selectedSizes]);
 
   const addProducts = async (e: any) => {
     e.preventDefault()
@@ -63,12 +63,12 @@ const AddProductsItem = () => {
           route.push("/error")
         })
     }
-  }
+  };
 
   const handleCheckboxChange = (event: any) => {
     const {value, checked} = event.target
     setSelectedSizes((prevState: any) => (checked ? [...prevState, value] : prevState.filter((size: any) => size !== value)))
-  }
+  };
 
   return (
     <div className='AddProductsItem bg-slate-50 border border-slate-300 rounded'>

@@ -12,11 +12,11 @@ const ProductDispaly = ({product, idProducts}: any) => {
 
   let [size, setSize] = useState("XL");
 
-  let handlingPagination = (e: React.MouseEvent<HTMLLIElement>) => {
-    let name: any = e.target as HTMLLIElement
-    let valueName: any = name.textContent
-    setSize(valueName)
-  }
+  const handlingPagination = (e: React.MouseEvent<HTMLLIElement>) => {
+    let name: any = e.target as HTMLLIElement;
+    let valueName: any = name.textContent;
+    setSize(valueName);
+  };
 
   return (
     <div className='py-6'>

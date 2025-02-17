@@ -3,14 +3,11 @@ import "./CardItem.css"
 import Swale from "../Swal/Swal"
 
 const CardItem = ({all_products, cardItems, RemoveCardItems, gettotalPriceProducts, cookies}: any) => {
-  let products: any = []
-  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
+  let products: any = [];
+  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
-  let makePayment = (token: any) => {
-    const body = {
-      token,
-      products,
-    }
+  const makePayment = (token: any) => {
+    const body = { token, products };
 
     return fetch(`${BASE_URL}/charge`, {
       method: "POST",
@@ -20,11 +17,11 @@ const CardItem = ({all_products, cardItems, RemoveCardItems, gettotalPriceProduc
       if (res.status == 401) {
         Swale("the user not authorized ❌")
       }
-    })
-  }
+    });
+  };
 
   return (
-    <div className=''>
+    <div>
       <div className=' grid bg-slate-50 pt-7 px-8'>
         <div className='responsive-table container mx-auto bg-slate-50 p-6 rounded-lg shadow-md overflow-auto' style={{maxHeight: "calc(100vh - 105px)"}}>
           <h1 className='text:xl sm:text-2xl font-bold mb-4 text-gray-800'>All Products List</h1>
@@ -61,8 +58,8 @@ const CardItem = ({all_products, cardItems, RemoveCardItems, gettotalPriceProduc
                           X
                         </td>
                       </tr>
-                    )}
-                })}
+                    )};
+                })};
             </tbody>
           </table>
         </div>

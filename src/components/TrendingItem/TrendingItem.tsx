@@ -18,9 +18,7 @@ const TrendingItem = async () => {
           return <Item key={i} id={item._id} name={item.name} image={item.img} new_price={item.new_price} old_price={item.old_price} />
         })
       ) : (
-        <div className='col-span-12'>
-          <Spinner />
-        </div>
+        <div className='col-span-12'><Spinner /></div>
       )}
     </div>
   );

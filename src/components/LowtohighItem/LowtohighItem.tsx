@@ -9,7 +9,7 @@ import {useRouter} from "next/navigation"
 const LowtohighItem = () => {
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
-  let route = useRouter();
+  const route = useRouter();
   let {cookies} = useContext(ShopeProviderContext);
 
   let [newCollection, setNewCollection]: any = useState();

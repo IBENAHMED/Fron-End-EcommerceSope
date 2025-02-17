@@ -1,20 +1,20 @@
-"use client"
+"use client";
 
-import axios from "axios"
-import {useRouter} from "next/navigation"
-import React, {useContext, useEffect, useState} from "react"
-import {ShopeProviderContext} from "@/context/ShopeContext"
+import axios from "axios";
+import {useRouter} from "next/navigation";
+import React, {useContext, useEffect, useState} from "react";
+import {ShopeProviderContext} from "@/context/ShopeContext";
 
-import Item from "../Item/Item"
-import Spinner from "../Spinner/Spinner"
+import Item from "../Item/Item";
+import Spinner from "../Spinner/Spinner";
 
 export default function HightolowItem() {
-  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
+  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
-  let route = useRouter()
-  let {cookies} = useContext(ShopeProviderContext)
+  let route = useRouter();
+  let {cookies} = useContext(ShopeProviderContext);
 
-  let [newCollection, setNewCollection]: any = useState()
+  let [newCollection, setNewCollection]: any = useState();
 
   useEffect(() => {
     let fetchData = async () => {

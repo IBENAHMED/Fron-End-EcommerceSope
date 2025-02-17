@@ -14,19 +14,19 @@ export default function page (props: any) {
   let product = all_products && all_products.find((e: any) => e._id == props.params.Product);
 
   return (
-      <div className='container mx-auto'>
-        {product ? (
-          <div className='px-5'>
-            <Breadcrums product={product && product} />
-            <ProductDispaly product={product && product} idProducts={props.params.Product} />
-            <DiscriptionBox />
-            <RelatedProducts idProducts={props.params.Product} />
-          </div>
-        ) : (
-          <div className='col-span-12 flex justify-center items-center h-screen'>
-            <Spinner />
-          </div>
-        )}
-      </div>
-    );
+    <div className='container mx-auto'>
+      {product ? (
+        <div className='px-5'>
+          <Breadcrums product={product && product} />
+          <ProductDispaly product={product && product} idProducts={props.params.Product} />
+          <DiscriptionBox />
+          <RelatedProducts idProducts={props.params.Product} />
+        </div>
+      ) : (
+        <div className='col-span-12 flex justify-center items-center h-screen'>
+          <Spinner />
+        </div>
+      )}
+    </div>
+  );
 };

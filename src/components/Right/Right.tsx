@@ -6,7 +6,7 @@ import {useRouter} from "next/navigation";
 import React, {useEffect, useState} from "react";
 
 const Right = () => {
-  let route = useRouter();
+  const route = useRouter();
 
   let [isMobile, setIsMobile] = useState(false);
   let list: string[] = ["Trending", "Latest arrivals", "Price: Low to high", "Price: High to low"];
@@ -23,7 +23,7 @@ const Right = () => {
     handlingNavigation(NameLIElement)
   };
 
-  let handlingNavigation = (NameLIElement: any) => {
+  const handlingNavigation = (NameLIElement: any) => {
     return NameLIElement == "Trending" ? 
       route.push("/trending") : 
         NameLIElement == "Latest arrivals" ? 
@@ -35,7 +35,7 @@ const Right = () => {
                     route.push("/");
   };
 
-  let handleClickOption = (e: any) => {
+  const handleClickOption = (e: any) => {
     let NameLIElement: any = e.target.value;
     handlingNavigation(NameLIElement);
   };

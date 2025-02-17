@@ -22,19 +22,19 @@ const Navbar = () => {
       const role = window.localStorage.getItem("role")
       setRole(role)
     }
-  }, [])
+  }, []);
 
   const toggleMobileNav = () => {
     setIsMobileNavVisible(!isMobileNavVisible)
-  }
+  };
 
-  let handleLogout = () => {
+  const handleLogout = () => {
     removeCookie("token")
     if (typeof window !== "undefined") {
       window.localStorage.removeItem("role")
       window.location.replace("/SignUp")
-    }
-  }
+    };
+  };
 
   return (
     <header className='navbar z-10 bg-slate-50 p-4'>

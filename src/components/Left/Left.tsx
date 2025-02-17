@@ -4,26 +4,26 @@ import "./Left.css"
 import {useRouter} from "next/navigation"
 
 const Left = () => {
-  let list: string[] = ["All", "Women", "Men", "Kids", "Bags", "Kids", "Stickers"]
+  let list: string[] = ["All", "Women", "Men", "Kids", "Bags", "Kids", "Stickers"];
 
-  let route = useRouter()
-  const [role, setRole] = useState<string | null>(null)
-  let [isMobile, setIsMobile] = useState(false)
+  const route = useRouter();
+  const [role, setRole] = useState<string | null>(null);
+  let [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
       const role = window.localStorage.getItem("role")
       setRole(role)
     }
-  }, [])
+  }, []);
 
   useEffect(() => {
     const handleResize = () => (window.innerWidth <= 767 ? setIsMobile(true) : setIsMobile(false))
     handleResize()
     window.addEventListener("resize", handleResize)
-  }, [])
+  }, []);
 
-  let handlingNavigation = (NameLIElement: any) => {
+  const handlingNavigation = (NameLIElement: any) => {
     return NameLIElement == "Women"
       ? route.push("/women")
       : NameLIElement == "All"
@@ -45,7 +45,7 @@ const Left = () => {
     handlingNavigation(NameLIElement)
   }
 
-  let handleClickOption = (e: any) => {
+  const handleClickOption = (e: any) => {
     let NameLIElement: any = e.target.value
     handlingNavigation(NameLIElement)
   }
@@ -107,7 +107,7 @@ const Left = () => {
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Left
+export default Left;

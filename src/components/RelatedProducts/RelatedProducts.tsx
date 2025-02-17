@@ -13,7 +13,7 @@ const RelatedProducts = ({idProducts}: any) => {
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
   useEffect(() => {
-    let getrelatiedproducts = async () => {
+    const getrelatiedproducts = async () => {
       let data = await axios.post(`${BASE_URL}/getrelatiedproducts`, {_id: idProducts})
       setData(data.data.fourProducts)
     }

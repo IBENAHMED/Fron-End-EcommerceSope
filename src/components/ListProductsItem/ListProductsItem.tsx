@@ -11,10 +11,10 @@ import Swale from "@/components/Swal/Swal";
 const ListProductsItem = () => {
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
   
-  let router = useRouter();
+  const router = useRouter();
   let {cookies, allProductsPagination, pageNumbers, handlingPagination} = useContext(ShopeProviderContext);
 
-  let handlingRemoveProduct = async (id: any) => {
+  const handlingRemoveProduct = async (id: any) => {
     return await fetch(`${BASE_URL}/removeProduct`, {
       method: "POST",
       headers: {
@@ -28,10 +28,10 @@ const ListProductsItem = () => {
       .then((res) => {
         res.status == 200 ? Swale("products removed correctly ✅") : res.status == 403 ? Swale("Just admin can remove products ❌") : router.push("/error")
       })
-      .catch((err) => {
-        router.push("/error")
-      })
-  }
+      .catch(() => {
+        router.push("/error");
+      });
+  };
 
   return (
     <div className='grid mb-3'>
