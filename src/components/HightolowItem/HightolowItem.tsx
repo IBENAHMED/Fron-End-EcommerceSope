@@ -25,8 +25,8 @@ export default function HightolowItem() {
         route.push("/error")
       }
     }
-    fetchData();
-  }, [cookies.token]);
+    fetchData()
+  }, [cookies.token])
 
   return (
     <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mb-5 gap-5'>

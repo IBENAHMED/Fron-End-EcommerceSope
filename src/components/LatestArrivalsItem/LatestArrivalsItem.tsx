@@ -1,14 +1,14 @@
-"use client";
+"use client"
 
-import "./LatestArrivalsItem.css";
+import "./LatestArrivalsItem.css"
 
-import axios from "axios";
-import {useRouter} from "next/navigation";
-import {useContext, useEffect, useState} from "react";
-import {ShopeProviderContext} from "@/context/ShopeContext";
+import axios from "axios"
+import {useRouter} from "next/navigation"
+import {useContext, useEffect, useState} from "react"
+import {ShopeProviderContext} from "@/context/ShopeContext"
 
-import Item from "../Item/Item";
-import Spinner from "../Spinner/Spinner";
+import Item from "../Item/Item"
+import Spinner from "../Spinner/Spinner"
 
 export default function LatestArrivalsItem() {
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
@@ -42,5 +42,5 @@ export default function LatestArrivalsItem() {
         </div>
       )}
     </div>
-  );
-};
+  )
+}

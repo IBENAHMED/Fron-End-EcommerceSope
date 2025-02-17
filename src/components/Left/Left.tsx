@@ -6,7 +6,7 @@ import {useRouter} from "next/navigation"
 const Left = () => {
   let list: string[] = ["All", "Women", "Men", "Kids", "Bags", "Kids", "Stickers"]
 
-  let route = useRouter()
+  const route = useRouter()
   const [role, setRole] = useState<string | null>(null)
   let [isMobile, setIsMobile] = useState(false)
 
@@ -23,7 +23,7 @@ const Left = () => {
     window.addEventListener("resize", handleResize)
   }, [])
 
-  let handlingNavigation = (NameLIElement: any) => {
+  const handlingNavigation = (NameLIElement: any) => {
     return NameLIElement == "Women"
       ? route.push("/women")
       : NameLIElement == "All"
@@ -45,7 +45,7 @@ const Left = () => {
     handlingNavigation(NameLIElement)
   }
 
-  let handleClickOption = (e: any) => {
+  const handleClickOption = (e: any) => {
     let NameLIElement: any = e.target.value
     handlingNavigation(NameLIElement)
   }
@@ -98,7 +98,7 @@ const Left = () => {
                   ListProduct
                 </li>
               </div>
-            ) : ( 
+            ) : (
               <></>
             )}
           </ul>

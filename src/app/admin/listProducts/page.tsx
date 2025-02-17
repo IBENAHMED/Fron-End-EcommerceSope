@@ -1,12 +1,10 @@
-"use client";
+"use client"
 
-import withAuthandRole from "@/util/PrivateRouterAdmin";
-import ListProductsItem from "@/components/ListProductsItem/ListProductsItem";
+import withAuthandRole from "@/util/PrivateRouterAdmin"
+import ListProductsItem from "@/components/ListProductsItem/ListProductsItem"
 
 const page = () => {
-  return (
-    <ListProductsItem />
-  );
-};
+  return <ListProductsItem />
+}
 
-export default withAuthandRole(page);
+export default withAuthandRole(page)

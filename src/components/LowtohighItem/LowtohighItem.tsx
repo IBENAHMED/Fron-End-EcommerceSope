@@ -7,12 +7,12 @@ import Spinner from "../Spinner/Spinner"
 import {useRouter} from "next/navigation"
 
 const LowtohighItem = () => {
-  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
 
-  let route = useRouter();
-  let {cookies} = useContext(ShopeProviderContext);
+  const route = useRouter()
+  let {cookies} = useContext(ShopeProviderContext)
 
-  let [newCollection, setNewCollection]: any = useState();
+  let [newCollection, setNewCollection]: any = useState()
 
   useEffect(() => {
     let fetchData = async () => {
@@ -38,7 +38,7 @@ const LowtohighItem = () => {
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default LowtohighItem;
+export default LowtohighItem
