@@ -61,8 +61,7 @@ const CardItem = ({all_products, cardItems, RemoveCardItems, gettotalPriceProduc
                           X
                         </td>
                       </tr>
-                    )
-                  }
+                    )}
                 })}
             </tbody>
           </table>
@@ -102,7 +101,4 @@ const CardItem = ({all_products, cardItems, RemoveCardItems, gettotalPriceProduc
   )
 }
 
-/*
-  
-*/
 export default CardItem

@@ -1,46 +1,46 @@
-"use client"
-import './LatestArrivalsItem.css';
+"use client";
 
-import axios from 'axios';
-import { useRouter } from 'next/navigation';
-import { useContext, useEffect, useState } from 'react';
-import { ShopeProviderContext } from '@/context/ShopeContext';
+import "./LatestArrivalsItem.css";
 
-import Item from '../Item/Item';
-import Spinner from '../Spinner/Spinner';
+import axios from "axios";
+import {useRouter} from "next/navigation";
+import {useContext, useEffect, useState} from "react";
+import {ShopeProviderContext} from "@/context/ShopeContext";
 
-export default function LatestArrivalsItem () {
-    const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+import Item from "../Item/Item";
+import Spinner from "../Spinner/Spinner";
 
-    let route = useRouter()
-    
-    let { cookies } = useContext(ShopeProviderContext)
+export default function LatestArrivalsItem() {
+  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
 
-    let [newCollection, setNewCollection]: any = useState();
+  let route = useRouter()
+  let {cookies} = useContext(ShopeProviderContext)
 
-    useEffect(() => {
-        let fetchData = async () => {
-            try {
-                let data = await axios.get(`${BASE_URL}/newcollection`);
-                setNewCollection(data.data.newCollection);
-            } catch (err) {
-                route.push('/error')
-            }
-        };
-        fetchData();
-    }, [cookies.token])
+  let [newCollection, setNewCollection]: any = useState()
 
-    return (
-      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mb-5 gap-5'>
-        {newCollection ? (
-          newCollection.map((item: any, i: any) => {
-            return <Item key={i} id={item._id} name={item.name} image={item.img} new_price={item.new_price} old_price={item.old_price} />
-          })
-        ) : (
-          <div className='col-span-12'>
-            <Spinner />
-          </div>
-        )}
-      </div>
-    )
-}
+  useEffect(() => {
+    let fetchData = async () => {
+      try {
+        let data = await axios.get(`${BASE_URL}/newcollection`)
+        setNewCollection(data.data.newCollection)
+      } catch (err) {
+        route.push("/error")
+      }
+    }
+    fetchData()
+  }, [cookies.token])
+
+  return (
+    <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mb-5 gap-5'>
+      {newCollection ? (
+        newCollection.map((item: any, i: any) => {
+          return <Item key={i} id={item._id} name={item.name} image={item.img} new_price={item.new_price} old_price={item.old_price} />
+        })
+      ) : (
+        <div className='col-span-12'>
+          <Spinner />
+        </div>
+      )}
+    </div>
+  );
+};

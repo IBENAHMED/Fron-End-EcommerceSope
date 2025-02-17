@@ -1,14 +1,12 @@
 "use client"
-import React from 'react'
+import React from 'react';
 
-import AddProductsItem from '@/components/AddProductsItem/AddProductsItem'
-import withAuthandRole from '@/util/PrivateRouterAdmin'
+import withAuthandRole from '@/util/PrivateRouterAdmin';
+import AddProductsItem from '@/components/AddProductsItem/AddProductsItem';
 
 const page = () => {
   return (
-    <div>
-      <AddProductsItem />
-    </div>
+    <AddProductsItem />
   )
 }
 

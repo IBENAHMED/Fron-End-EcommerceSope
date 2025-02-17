@@ -1,15 +1,16 @@
 "use client"
 
-import "./ProductDispaly.css"
-import {useContext, useState} from "react"
-import {ShopeProviderContext} from "@/context/ShopeContext"
+import "./ProductDispaly.css";
+import {useContext, useState} from "react";
+import {ShopeProviderContext} from "@/context/ShopeContext";
 
-import star_icon from "../../Assets/star_icon.png"
-import star_dull_icon from "../../Assets/star_dull_icon.png"
+import star_icon from "../../Assets/star_icon.png";
+import star_dull_icon from "../../Assets/star_dull_icon.png";
 
 const ProductDispaly = ({product, idProducts}: any) => {
-  let {AddCardItems} = useContext(ShopeProviderContext)
-  let [size, setSize] = useState("XL")
+  let {AddCardItems} = useContext(ShopeProviderContext);
+
+  let [size, setSize] = useState("XL");
 
   let handlingPagination = (e: React.MouseEvent<HTMLLIElement>) => {
     let name: any = e.target as HTMLLIElement
@@ -69,7 +70,7 @@ const ProductDispaly = ({product, idProducts}: any) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ProductDispaly
+export default ProductDispaly;

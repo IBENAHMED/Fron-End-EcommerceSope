@@ -9,11 +9,10 @@ import {ShopeProviderContext} from "@/context/ShopeContext";
 import Swale from "@/components/Swal/Swal";
 
 const ListProductsItem = () => {
-  let {cookies, allProductsPagination, pageNumbers, handlingPagination} = useContext(ShopeProviderContext)
-
-  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
-
-  let router = useRouter()
+  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+  
+  let router = useRouter();
+  let {cookies, allProductsPagination, pageNumbers, handlingPagination} = useContext(ShopeProviderContext);
 
   let handlingRemoveProduct = async (id: any) => {
     return await fetch(`${BASE_URL}/removeProduct`, {

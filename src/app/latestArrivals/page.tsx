@@ -4,8 +4,6 @@ import LatestArrivalsItem from "@/components/LatestArrivalsItem/LatestArrivalsIt
 
 export default function page () {
   return (
-    <div>
-      <LatestArrivalsItem />
-    </div>
+    <LatestArrivalsItem />
   )
 }

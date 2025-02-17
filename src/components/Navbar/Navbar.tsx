@@ -10,12 +10,12 @@ import {ShopeProviderContext} from "@/context/ShopeContext"
 import profile from "../../Assets/logo.png"
 
 const Navbar = () => {
-  let router = useRouter()
+  let router = useRouter();
 
-  let {getTotalCartItemAdded, cookies, removeCookie} = useContext(ShopeProviderContext)
+  let {getTotalCartItemAdded, cookies, removeCookie} = useContext(ShopeProviderContext);
 
-  const [role, setRole] = useState<string | null>(null)
-  const [isMobileNavVisible, setIsMobileNavVisible] = useState(false)
+  const [role, setRole] = useState<string | null>(null);
+  const [isMobileNavVisible, setIsMobileNavVisible] = useState(false);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -124,7 +124,7 @@ const Navbar = () => {
         </nav>
       )}
     </header>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

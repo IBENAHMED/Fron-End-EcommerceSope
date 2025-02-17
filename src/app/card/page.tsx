@@ -1,14 +1,13 @@
 "use client"
 
-import { useContext } from "react"
-import withAuth from "@/util/PrivateRouter"
-import { ShopeProviderContext } from "@/context/ShopeContext"
+import { useContext } from "react";
+import withAuth from "@/util/PrivateRouter";
+import { ShopeProviderContext } from "@/context/ShopeContext";
 
-import CardItem from "@/components/CardItem/CardItem"
-import Spinner from "@/components/Spinner/Spinner"
+import Spinner from "@/components/Spinner/Spinner";
+import CardItem from "@/components/CardItem/CardItem";
 
 const page = () => {
-
     let { all_products, cardItems, RemoveCardItems, gettotalPriceProducts, cookies } = useContext(ShopeProviderContext);
 
     return (
