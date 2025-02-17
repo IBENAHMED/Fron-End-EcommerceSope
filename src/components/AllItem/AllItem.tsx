@@ -45,5 +45,5 @@ export default function AllItem() {
         </ul>
       </div>
     </>
-  );
-};
+  )
+}

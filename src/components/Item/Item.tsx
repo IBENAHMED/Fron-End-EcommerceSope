@@ -1,14 +1,14 @@
-import "./Item.css";
+import "./Item.css"
 
-import React from "react";
-import Link from "next/link";
+import React from "react"
+import Link from "next/link"
 interface ItemProps {
   id: number
   name: string
   image: any
   new_price: number
   old_price: number
-};
+}
 
 const Item: React.FC<ItemProps> = ({id, name, image, new_price, old_price}) => {
   return (
@@ -24,7 +24,7 @@ const Item: React.FC<ItemProps> = ({id, name, image, new_price, old_price}) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
 export default Item

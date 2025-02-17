@@ -1,20 +1,20 @@
-"use client";
+"use client"
 
-import "./ListProductsItem.css";
+import "./ListProductsItem.css"
 
-import {useRouter} from "next/navigation";
-import React, {useContext} from "react";
-import {ShopeProviderContext} from "@/context/ShopeContext";
+import {useRouter} from "next/navigation"
+import React, {useContext} from "react"
+import {ShopeProviderContext} from "@/context/ShopeContext"
 
-import Swale from "@/components/Swal/Swal";
+import Swale from "@/components/Swal/Swal"
 
 const ListProductsItem = () => {
-  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
-  
-  let router = useRouter();
-  let {cookies, allProductsPagination, pageNumbers, handlingPagination} = useContext(ShopeProviderContext);
+  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
 
-  let handlingRemoveProduct = async (id: any) => {
+  const router = useRouter()
+  let {cookies, allProductsPagination, pageNumbers, handlingPagination} = useContext(ShopeProviderContext)
+
+  const handlingRemoveProduct = async (id: any) => {
     return await fetch(`${BASE_URL}/removeProduct`, {
       method: "POST",
       headers: {
@@ -28,7 +28,7 @@ const ListProductsItem = () => {
       .then((res) => {
         res.status == 200 ? Swale("products removed correctly ✅") : res.status == 403 ? Swale("Just admin can remove products ❌") : router.push("/error")
       })
-      .catch((err) => {
+      .catch(() => {
         router.push("/error")
       })
   }

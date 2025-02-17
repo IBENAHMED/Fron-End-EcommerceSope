@@ -1,9 +1,7 @@
-import React from "react";
+import React from "react"
 
-import HomeItem from "@/components/HomeItem/HomeItem";
+import HomeItem from "@/components/HomeItem/HomeItem"
 
 export default function Home() {
-  return (
-    <HomeItem />
-  );
+  return <HomeItem />
 }
