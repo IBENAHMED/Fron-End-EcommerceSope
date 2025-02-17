@@ -1,12 +1,9 @@
-import TrendingItem from '@/components/TrendingItem/TrendingItem';
 import React from 'react'
 
-const page = () => {
-    return (
-        <>
-            <TrendingItem />
-        </>
-    )
-}
+import TrendingItem from '@/components/TrendingItem/TrendingItem';
 
-export default page
+export default function page () {
+  return (
+    <><TrendingItem /></>
+  );
+};

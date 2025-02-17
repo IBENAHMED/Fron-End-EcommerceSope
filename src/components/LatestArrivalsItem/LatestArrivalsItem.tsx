@@ -1,19 +1,22 @@
 "use client"
 import './LatestArrivalsItem.css';
-import Item from '../Item/Item';
-import { useContext, useEffect, useState } from 'react';
-import axios from 'axios';
-import Spinner from '../Spinner/Spinner';
-import { ShopeProviderContext } from '@/context/ShopeContext';
-import { useRouter } from 'next/navigation';
 
-const LatestArrivalsItem = () => {
+import axios from 'axios';
+import { useRouter } from 'next/navigation';
+import { useContext, useEffect, useState } from 'react';
+import { ShopeProviderContext } from '@/context/ShopeContext';
+
+import Item from '../Item/Item';
+import Spinner from '../Spinner/Spinner';
+
+export default function LatestArrivalsItem () {
     const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
+    let route = useRouter()
+    
     let { cookies } = useContext(ShopeProviderContext)
 
     let [newCollection, setNewCollection]: any = useState();
-    let route = useRouter()
 
     useEffect(() => {
         let fetchData = async () => {
@@ -28,29 +31,16 @@ const LatestArrivalsItem = () => {
     }, [cookies.token])
 
     return (
-        <>
-            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mb-5 gap-5'>
-                {
-                    newCollection
-                        ?
-                        newCollection.map((item: any, i: any) => {
-                            return <Item
-                                key={i}
-                                id={item._id}
-                                name={item.name}
-                                image={item.img}
-                                new_price={item.new_price}
-                                old_price={item.old_price}
-                            />
-                        })
-                        :
-                        <div className='col-span-12'>
-                            <Spinner />
-                        </div>
-                }
-            </div>
-        </>
+      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mb-5 gap-5'>
+        {newCollection ? (
+          newCollection.map((item: any, i: any) => {
+            return <Item key={i} id={item._id} name={item.name} image={item.img} new_price={item.new_price} old_price={item.old_price} />
+          })
+        ) : (
+          <div className='col-span-12'>
+            <Spinner />
+          </div>
+        )}
+      </div>
     )
 }
-
-export default LatestArrivalsItem;

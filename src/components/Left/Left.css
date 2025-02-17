@@ -1,12 +1,12 @@
 .left {
-    height: calc(100vh - 73.33px);
-    position: sticky;
-    top: 73.33px;
+  height: calc(100vh - 73.33px);
+  position: sticky;
+  top: 73.33px;
 }
 
 @media (max-width: 767px) {
-    .left {
-        height: 120px;
-        text-align: center;
-    }
+  .left {
+    height: 120px;
+    text-align: center;
+  }
 }

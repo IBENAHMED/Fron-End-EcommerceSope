@@ -1,7 +1,7 @@
-import Link from 'next/link'
-import React from 'react'
+import React from 'react';
+import Link from 'next/link';
 
-const ErrorItem = () => {
+export default function ErrorItem () {
   return (
     <div className="bg-slate-50 flex items-center justify-center h-screen">
       <div className="bg-slate-50 bg-opacity-60 backdrop-filter backdrop-blur-lg p-8 rounded-xl text-center shadow-2xl max-w-md transform transition-transform duration-300 hover:scale-105">
@@ -20,5 +20,3 @@ const ErrorItem = () => {
     </div>
   )
 }
-
-export default ErrorItem

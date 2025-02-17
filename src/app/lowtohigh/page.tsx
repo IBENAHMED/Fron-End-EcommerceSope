@@ -1,12 +1,11 @@
-import LowtohighItem from '@/components/LowtohighItem/LowtohighItem'
-import React from 'react'
+import React from 'react';
 
-const page = () => {
-    return (
-        <div>
-            <LowtohighItem />
-        </div>
-    )
-}
+import LowtohighItem from '@/components/LowtohighItem/LowtohighItem';
 
-export default page
+export default function page ()  {
+  return (
+    <div>
+      <LowtohighItem />
+    </div>
+  );
+};

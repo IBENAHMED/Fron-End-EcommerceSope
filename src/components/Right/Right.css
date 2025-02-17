@@ -1,12 +1,12 @@
 .Right {
-    height: calc(100vh - 73.33px);
-    position: sticky;
-    top: 73.33px;
+  height: calc(100vh - 73.33px);
+  position: sticky;
+  top: 73.33px;
 }
 
 @media (max-width: 767px) {
-    .Right {
-        height: 120px;
-        text-align: center;
-    }
+  .Right {
+    height: 120px;
+    text-align: center;
+  }
 }
