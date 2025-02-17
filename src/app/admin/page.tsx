@@ -1,13 +1,11 @@
 "use client"
-import React from 'react';
+import React from "react"
 
-import withAuthandRole from '@/util/PrivateRouterAdmin';
-import AddProductsItem from '@/components/AddProductsItem/AddProductsItem';
+import withAuthandRole from "@/util/PrivateRouterAdmin"
+import AddProductsItem from "@/components/AddProductsItem/AddProductsItem"
 
 const page = () => {
-  return (
-    <AddProductsItem />
-  )
+  return <AddProductsItem />
 }
 
 export default withAuthandRole(page)

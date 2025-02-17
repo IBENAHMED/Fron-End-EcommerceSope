@@ -23,8 +23,8 @@ const AddProductsItem = () => {
   const route = useRouter()
   const {cookies} = useContext(ShopeProviderContext)
 
-  const [selectedSizes, setSelectedSizes]: any = useState([])
   const [img, setImage]: boolean | any = useState(false)
+  const [selectedSizes, setSelectedSizes]: any = useState([])
   const [product, setProduct]: any = useState({name: "", img: "", category: "women", new_price: "", old_price: "", size: []})
 
   useEffect(() => {

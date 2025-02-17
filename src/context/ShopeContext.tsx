@@ -1,8 +1,8 @@
-"use client";
+"use client"
 
-import axios from "axios";
-import {useRouter} from "next/navigation";
-import {createContext, useEffect, useState} from "react";
+import axios from "axios"
+import {useRouter} from "next/navigation"
+import {createContext, useEffect, useState} from "react"
 
 import {useCookies} from "react-cookie"
 import Swale from "@/components/Swal/Swal"
@@ -10,38 +10,38 @@ import Swale from "@/components/Swal/Swal"
 export const ShopeProviderContext = createContext<any>(null)
 
 const ShopeContext = ({children}: any) => {
-  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
-  
-  const router = useRouter();
-  const [cookies, setCookie, removeCookie] = useCookies(["token"]);
+  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
 
-  const [all_products, setAll_Products]: any = useState();
-  const [allProductsPagination, setAllProductsPagination]: any = useState();
-  const [cardItems, setCardItems]: any = useState({});
-  const [numberpage, setNumberpage]: any = useState(undefined);
-  const [page, setPage]: any = useState(1);
+  const router = useRouter()
+  const [cookies, setCookie, removeCookie] = useCookies(["token"])
 
-  useEffect(() => {
-    getDefaultCarts();
-  }, []);
+  const [all_products, setAll_Products]: any = useState()
+  const [allProductsPagination, setAllProductsPagination]: any = useState()
+  const [cardItems, setCardItems]: any = useState({})
+  const [numberpage, setNumberpage]: any = useState(undefined)
+  const [page, setPage]: any = useState(1)
 
   useEffect(() => {
-    fetchAllproducts();
-
-    const intervalId = setInterval(fetchAllproducts, 30000);
-    return () => clearInterval(intervalId);
-  }, [cookies.token]);
+    getDefaultCarts()
+  }, [])
 
   useEffect(() => {
-    fetchProductswithpagination();
-  }, []);
+    fetchAllproducts()
+
+    const intervalId = setInterval(fetchAllproducts, 30000)
+    return () => clearInterval(intervalId)
+  }, [cookies.token])
 
   useEffect(() => {
-    fetchProductswithpagination();
+    fetchProductswithpagination()
+  }, [])
 
-    const intervalId = setInterval(fetchProductswithpagination, 6000);
-    return () => clearInterval(intervalId);
-  }, [page]);
+  useEffect(() => {
+    fetchProductswithpagination()
+
+    const intervalId = setInterval(fetchProductswithpagination, 6000)
+    return () => clearInterval(intervalId)
+  }, [page])
 
   const getDefaultCarts = async () => {
     if (cookies.token) {
@@ -60,27 +60,27 @@ const ShopeContext = ({children}: any) => {
       } catch (error) {
         router.push("/error")
       }
-    };
-  };
+    }
+  }
 
   const fetchAllproducts = async () => {
     try {
-      let res = await axios.get(`${BASE_URL}/getallproducts`);
-      setAll_Products(res.data.allPrudcts);
+      let res = await axios.get(`${BASE_URL}/getallproducts`)
+      setAll_Products(res.data.allPrudcts)
     } catch (err) {
-      router.push("/error");
-    };
-  };
+      router.push("/error")
+    }
+  }
 
   const fetchProductswithpagination = async () => {
     try {
-      let response = await axios.post(`${BASE_URL}/getallproductswithpagination/${page}`);
-      setAllProductsPagination(response.data.productPage);
-      setNumberpage(response.data.numberPages);
+      let response = await axios.post(`${BASE_URL}/getallproductswithpagination/${page}`)
+      setAllProductsPagination(response.data.productPage)
+      setNumberpage(response.data.numberPages)
     } catch (err) {
-      router.push("/error");
-    };
-  };
+      router.push("/error")
+    }
+  }
 
   const AddCardItems = async (id: any, size: any) => {
     if (cookies.token) {
@@ -98,11 +98,11 @@ const ShopeContext = ({children}: any) => {
         res.status == 200 ? Swale("Product Added ✅") : res.status == 403 ? Swale("Size product is not available in the stock ❌") : router.push("/error")
       })
 
-      getDefaultCarts();
+      getDefaultCarts()
     } else {
-      router.push("/SignUp");
-    };
-  };
+      router.push("/SignUp")
+    }
+  }
 
   const RemoveCardItems = async (id: any) => {
     if (cookies.token) {
@@ -121,35 +121,35 @@ const ShopeContext = ({children}: any) => {
           if (res.status !== 200) {
             router.push("/error")
           }
-        });
+        })
 
-        getDefaultCarts();
-      };
-    };
-  };
+        getDefaultCarts()
+      }
+    }
+  }
 
   const gettotalPriceProducts = () => {
-    let totle: number = 0;
+    let totle: number = 0
     cardItems &&
       all_products.map((item: any) => {
         if (cardItems[item._id] > 0) {
-          totle = totle + item.new_price * cardItems[item._id];
-        };
-      });
-    return totle;
-  };
+          totle = totle + item.new_price * cardItems[item._id]
+        }
+      })
+    return totle
+  }
 
   const getTotalCartItemAdded = () => {
-    let total: any = 0;
+    let total: any = 0
     cardItems && all_products
       ? all_products.map((e: any) => {
           if (cardItems[e._id] > 0) {
             total = total + cardItems[e._id]
-          };
+          }
         })
       : (total = "...")
-    return total;
-  };
+    return total
+  }
 
   let pageNumbers: any[] = []
   if (numberpage !== undefined) {
@@ -159,9 +159,9 @@ const ShopeContext = ({children}: any) => {
   }
 
   const handlingPagination = (e: React.MouseEvent<HTMLLIElement>) => {
-    let name = e.target as HTMLLIElement;
-    let valueName = name.textContent;
-    setPage(valueName);
+    let name = e.target as HTMLLIElement
+    let valueName = name.textContent
+    setPage(valueName)
   }
 
   let contextValue = {
@@ -177,13 +177,13 @@ const ShopeContext = ({children}: any) => {
     allProductsPagination,
     gettotalPriceProducts,
     getTotalCartItemAdded,
-  };
+  }
 
   return (
     <div>
       <ShopeProviderContext.Provider value={contextValue}>{children}</ShopeProviderContext.Provider>
     </div>
-  );
-};
+  )
+}
 
-export default ShopeContext;
+export default ShopeContext
