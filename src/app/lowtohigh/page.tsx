@@ -1,9 +1,7 @@
-import React from 'react';
+import React from "react"
 
-import LowtohighItem from '@/components/LowtohighItem/LowtohighItem';
+import LowtohighItem from "@/components/LowtohighItem/LowtohighItem"
 
-export default function page () {
-  return (
-    <LowtohighItem />
-  );
-};
+export default function page() {
+  return <LowtohighItem />
+}

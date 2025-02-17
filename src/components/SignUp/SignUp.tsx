@@ -1,21 +1,21 @@
-"use client";
+"use client"
 
-import axios from "axios";
-import {useRouter} from "next/navigation";
-import React, {useContext, useState} from "react";
+import axios from "axios"
+import {useRouter} from "next/navigation"
+import React, {useContext, useState} from "react"
 
-import {ShopeProviderContext} from "@/context/ShopeContext";
-import Swale from "../Swal/Swal";
+import {ShopeProviderContext} from "@/context/ShopeContext"
+import Swale from "../Swal/Swal"
 
 const SignUp = () => {
-  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
 
-  const router = useRouter();
-  const {setCookie} = useContext(ShopeProviderContext);
+  const router = useRouter()
+  const {setCookie} = useContext(ShopeProviderContext)
 
-  const [state, setState] = useState("login");
-  const [stateToke, setStateToke] = useState(true);
-  const [formData, setFormData] = useState({name: "", email: "", password: ""});
+  const [state, setState] = useState("login")
+  const [stateToke, setStateToke] = useState(true)
+  const [formData, setFormData] = useState({name: "", email: "", password: ""})
 
   const login = async (e: any) => {
     e.preventDefault()
@@ -33,14 +33,14 @@ const SignUp = () => {
       }
     } catch (err) {
       router.push("/error")
-    };
-  };
+    }
+  }
 
   const SignUpUser = async (e: any) => {
     e.preventDefault()
 
-    let emailRegular = /^\S+@\S+\.com/gi;
-    const passwordRegular = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).{8,}$/gi;
+    let emailRegular = /^\S+@\S+\.com/gi
+    const passwordRegular = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).{8,}$/gi
 
     try {
       if (formData.name.length >= 3 && emailRegular.test(formData.email) && passwordRegular.test(formData.password)) {
@@ -58,8 +58,8 @@ const SignUp = () => {
       }
     } catch (err) {
       router.push("/error")
-    };
-  };
+    }
+  }
 
   return (
     <div className='flex items-center mb-5 justify-center bg-gray-50'>
@@ -134,7 +134,7 @@ const SignUp = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
 export default SignUp

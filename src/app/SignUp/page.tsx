@@ -1,10 +1,8 @@
-import './page.css';
+import "./page.css"
 
-import React from 'react';
-import SignUp from '@/components/SignUp/SignUp';
+import React from "react"
+import SignUp from "@/components/SignUp/SignUp"
 
-export default function page () {
-  return (
-    <SignUp />
-  );
-};
+export default function page() {
+  return <SignUp />
+}
